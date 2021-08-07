@@ -1,16 +1,4 @@
-# class_grades_analyzer
-
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+# 程式基本流程
+1. [x] 給定Header 的文字，因為有的人會讓他們不在同一 Row 上
+2. [x] 由Excel抓取資料，與轉為我們定義的格式
+3. [ ] 分析與畫出來
