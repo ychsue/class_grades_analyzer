@@ -9,7 +9,8 @@ import 'routes/app_pages.dart';
 import 'theme/app_theme_data.dart';
 
 void main() {
-  if (foundation.kReleaseMode) {
+  if (true) {
+    //foundation.kReleaseMode) {
     Get.put(IdAndGradeKeysController());
     Get.put(DoingSthController());
 

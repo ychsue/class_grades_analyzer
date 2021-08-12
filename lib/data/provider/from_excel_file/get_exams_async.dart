@@ -7,7 +7,7 @@ import '_get_excel_from_bytes_async.dart';
 
 Future<ExamsModel> getExamsAsync() async {
   var c = Get.find<DoingSthController>();
-  c.start(0, 1);
+  c.start(0, 0.5);
   c.title.value = "匯入Excel檔案"; //I18N
   var excel = await getExcelFromBytesAsync();
 

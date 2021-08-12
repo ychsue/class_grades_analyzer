@@ -13,9 +13,11 @@ class TestHome extends StatelessWidget {
         child: ElevatedButton(
           child: Text("Show Doing Something"),
           onPressed: () async {
-            c.start(0, 0.5);
+            c.start(0, 0.2);
             await Future.delayed(Duration(seconds: 3));
-            c.start(0.5, 1);
+            c.start(0.2, 0.7);
+            await Future.delayed(Duration(seconds: 2));
+            c.start(0.7, 1.0);
             await Future.delayed(Duration(seconds: 2));
             c.done();
           },
