@@ -1,5 +1,7 @@
-import 'package:class_grades_analyzer/controllers/id_and_grade_keys_controller.dart';
+import 'package:class_grades_analyzer/controllers/id_and_course_keys_controller.dart';
 import 'package:class_grades_analyzer/data/model/one_exam_row_model.dart';
+import 'package:class_grades_analyzer/data/model/one_record_model.dart';
+import 'package:class_grades_analyzer/data/model/extensions/virtual_courses.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:get/get.dart';
 
@@ -9,16 +11,21 @@ void main() {
     late var grades;
     setUp(() {
       id = {"座號": 10, "姓名": "abc"};
-      grades = {"國文": 80, "英語": 60.0, "數學": 100, "化學": 90};
-      Get.put(IdAndGradeKeysController());
+      grades = {
+        "國文": OneRecordModel()..numb = 100,
+        "英語": OneRecordModel()..numb = 80,
+        "數學": OneRecordModel()..numb = 90,
+        "自然": OneRecordModel()..numb = 100
+      };
+      Get.put(IdAndCourseKeysController());
     });
     test("sum", () {
-      var theModel = OneExamRowModel(id: id, data: grades);
-      expect(theModel.total, 330);
+      var theModel = OneExamRowModel(id: id, courses: grades);
+      expect(theModel.sum(), 370);
     });
     test("average", () {
-      var theModel = OneExamRowModel(id: id, data: grades);
-      expect(theModel.average, 80);
+      var theModel = OneExamRowModel(id: id, courses: grades);
+      expect(theModel.average(), 92.5);
     });
   });
 }

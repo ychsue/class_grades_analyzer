@@ -1,8 +1,8 @@
 import 'package:class_grades_analyzer/data/model/id_keys_model.dart';
 import 'package:get_storage/get_storage.dart';
 
-class IdAndGradeKeysApi {
-  static String storageName = "id_grade_keys";
+class IdAndCourseKeysApi {
+  static String storageName = "id_course_keys";
   static GetStorage box = GetStorage(storageName);
 
   static initAsync() async {
