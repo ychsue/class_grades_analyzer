@@ -5,5 +5,5 @@ import 'get_exams_async.dart' as g;
 /// `Get.find<IdAndCourseKeysController>()`
 ///
 class FromExcelFileApi {
-  var getExamsAsync = g.getExamsAsync;
+  final getExamsAsync = g.getExamsAsync;
 }

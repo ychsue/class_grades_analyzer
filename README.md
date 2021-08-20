@@ -17,3 +17,11 @@
 4. 此外，可以由三個方向投影，投影的法線我稱之為 virtual
    1. [x] 目前已經投影 **course** 為sum & average
    2. [ ] 若投影 **student** 則可以為 average 與 SD (Standard Deviation)標準差
+
+# 進度
+1. [2021-08-20] 已經加入 `TabBar` 與 `TabBarView` 了。
+2. 先將excel檔案讀入後變成 JSON 檔，再將人名前兩個變成 ~XX~ ，這樣避免個資外流
+``` regexp
+   尋找：  ("姓名":\s{1}")(.{2})(.{1})
+   替換：  $1XX$3
+```

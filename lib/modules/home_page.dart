@@ -1,28 +1,42 @@
-import 'dart:convert';
-
-import 'package:class_grades_analyzer/data/provider/from_excel_file/index.dart';
-import 'package:class_grades_analyzer/data/repository/get_exams.dart';
+import 'package:class_grades_analyzer/controllers/exam_controller.dart';
+import 'package:class_grades_analyzer/controllers/mytab_controller.dart';
+import 'package:class_grades_analyzer/modules/course/course_page.dart';
+import 'package:class_grades_analyzer/modules/exam/exam_page.dart';
+import 'package:class_grades_analyzer/modules/start/start_page.dart';
+import 'package:class_grades_analyzer/modules/student/student_page.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(),
-        body: Center(
-          child: ElevatedButton(
-            child: Text("open file"),
-            onPressed: () => getExams(),
+    final c = Get.find<ExamController>();
+    final cTab = Get.find<MyTabController>();
+    return Obx(() => Scaffold(
+        appBar: AppBar(
+          bottom: TabBar(
+            tabs: cTab.tNc.value.tabs,
+            controller: cTab.tNc.value.controller,
           ),
+          ),
+        body:
+            // Obx(() =>
+            TabBarView(
+          controller: cTab.tNc.value.controller,
+          children: [
+            StartPage(),
+            ...((c.exams.value != null)
+                ? [
+                    ExamPage(),
+                    StudentPage(),
+                    CoursePage(),
+                  ]
+                : []),
+          ],
+        )
+        // ),
         ));
-  }
-
-  getExams() async {
-    var examRepo = GetExamsRepository(FromExcelFileApi());
-    var result = await examRepo.getExamsAsync();
-    debugPrint(jsonEncode(result));
-    return result;
   }
 }

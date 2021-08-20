@@ -6,7 +6,7 @@ class GetExamsRepository {
 
   GetExamsRepository(this.api);
 
-  getExamsAsync() async {
+  Future<ExamsModel> getExamsAsync() async {
     return await api.getExamsAsync();
   }
 
