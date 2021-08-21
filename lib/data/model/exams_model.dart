@@ -20,9 +20,11 @@ class ExamsModel {
       {required this.idKeys, required this.courseKeys, required this.exams});
 
   ExamsModel.fromJson(Map<String, dynamic> json) {
-    this.idKeys = json['idKeys'];
-    this.courseKeys = json['courseKeys'];
-    this.exams = json['exams'];
+    this.idKeys = List<String>.from(json['idKeys']);
+    this.courseKeys = Map<String, int>.from(json['courseKeys']);
+    this.exams = (json['exams'] as List<dynamic>)
+        .map((e) => OneExamModel.fromJson(e))
+        .toList();
   }
 
   Map<String, dynamic> toJson() {

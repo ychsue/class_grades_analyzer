@@ -19,8 +19,14 @@
    2. [ ] 若投影 **student** 則可以為 average 與 SD (Standard Deviation)標準差
 
 # 進度
-1. [2021-08-20] 已經加入 `TabBar` 與 `TabBarView` 了。
-2. 先將excel檔案讀入後變成 JSON 檔，再將人名前兩個變成 ~XX~ ，這樣避免個資外流
+## [2021-08-20] 為了能夠加速開發，因此，將整筆Data變成 JSON 檔
+1. 結果 `JsonDecoder().convert(...)` 所得到的結果還需要修改才能由 `fromJson` 灌入 Model 裡
+2. 參考 [此篇 StackOverflow](https://stackoverflow.com/questions/53376518/dart-json-string-convert-to-list-string) 可以解決。
+   1. `String`, `num` 等不用轉換即可使用。
+   2. 透過 `List<String>.from(JSONVALUE)` 或 `Map<String,int>.from(JSONVALUE)` 來轉換 `List` 與 `Map`
+   3. 自訂 `class` 則要用 `(JSONVALUE as List<dynamic>).map((e)=>CLASS.fromJson(e)).toList()` 來達成
+## [2021-08-20] 已經加入 `TabBar` 與 `TabBarView` 了。
+1. 先將excel檔案讀入後變成 JSON 檔，再將人名前兩個變成 ~XX~ ，這樣避免個資外流
 ``` regexp
    尋找：  ("姓名":\s{1}")(.{2})(.{1})
    替換：  $1XX$3

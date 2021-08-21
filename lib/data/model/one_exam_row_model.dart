@@ -17,8 +17,11 @@ class OneExamRowModel {
   }
 
   OneExamRowModel.fromJson(Map<String, dynamic> json) {
-    this.id = json['id'];
-    this.courses = json['courses'];
+    var id = json['id'];
+    this.id = id;
+    var courses = (json['courses'] as Map<String, dynamic>)
+        .map((key, value) => MapEntry(key, OneRecordModel.fromJson(value)));
+    this.courses = courses;
   }
 
   Map<String, dynamic> toJson() {

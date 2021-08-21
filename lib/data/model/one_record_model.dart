@@ -12,7 +12,7 @@ class OneRecordModel {
 
   OneRecordModel.fromJson(Map<String, dynamic> json) {
     this.data = json['data'];
-    this.numb = json['numb'];
+    this.numb = json['num'];
     this.rank = json['rank'];
   }
 
