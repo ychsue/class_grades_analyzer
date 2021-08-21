@@ -1,5 +1,6 @@
 import 'package:class_grades_analyzer/controllers/exams_controller.dart';
-import 'package:class_grades_analyzer/controllers/mytab_controller.dart';
+import 'package:class_grades_analyzer/controllers/my_global_controller.dart';
+import 'package:class_grades_analyzer/modules/home/mytab_controller.dart';
 import 'package:class_grades_analyzer/modules/course/course_page.dart';
 import 'package:class_grades_analyzer/modules/exam/exam_page.dart';
 import 'package:class_grades_analyzer/modules/home/my_drawer.dart';
@@ -13,7 +14,7 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final c = Get.find<ExamsController>();
+    final c = Get.find<MyGlobalController>();
     final cTab = Get.find<MyTabController>();
     return Obx(() => Scaffold(
         drawer: (c.exams.value == null) ? null : MyDrawer(),

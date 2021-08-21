@@ -22,8 +22,6 @@ class GetExamsRepository {
       exams = await api.getExamsAsync();
     }
 
-    // * Update keys and ids
-    Get.find<IdAndCourseKeysController>().updateCurrentKeys(exams);
     return exams;
   }
 

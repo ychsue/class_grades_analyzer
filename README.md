@@ -17,6 +17,7 @@
 4. 此外，可以由三個方向投影，投影的法線我稱之為 virtual
    1. [x] 目前已經投影 **course** 為sum & average
    2. [ ] 若投影 **student** 則可以為 average 與 SD (Standard Deviation)標準差
+5. [ ] 使用 **TabBar** 來顯示這三種類型，由 **Drawer** 來操控個別類型
 
 # 進度
 ## [2021-08-21] 想讓不同狀態下 Drawer 的 `onTap` 有不停功能

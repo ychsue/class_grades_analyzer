@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:class_grades_analyzer/controllers/exams_controller.dart';
 import 'package:class_grades_analyzer/controllers/id_and_course_keys_controller.dart';
+import 'package:class_grades_analyzer/controllers/my_global_controller.dart';
 import 'package:class_grades_analyzer/data/provider/from_excel_file/index.dart';
 import 'package:class_grades_analyzer/data/repository/get_exams.dart';
 import 'package:flutter/material.dart';
@@ -24,13 +25,13 @@ class StartPage extends StatelessWidget {
     final c = Get.find<ExamsController>();
     var examRepo = GetExamsRepository(FromExcelFileApi());
     var result = await examRepo.getExamsAsync();
-    c.exams.value = result; // trigger the ExamController
+    c.exams.value = result; // trigger the ExamsController
 
     debugPrint(jsonEncode(result));
-    final keyNames = Get.find<IdAndCourseKeysController>();
-    debugPrint("ids: ${jsonEncode(keyNames.currentIds)}");
-    debugPrint("courses: ${jsonEncode(keyNames.currentCourseKeys)}");
-    debugPrint("exams: ${jsonEncode(keyNames.currentExamKeys)}");
+    final gC = Get.find<MyGlobalController>();
+    debugPrint("ids: ${jsonEncode(gC.currentIds)}");
+    debugPrint("courses: ${jsonEncode(gC.currentCourseKeys)}");
+    debugPrint("exams: ${jsonEncode(gC.currentExamKeys)}");
     return result;
   }
 }
