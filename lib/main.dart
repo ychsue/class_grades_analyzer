@@ -19,6 +19,7 @@ void main() {
     Get.put(MyTabController());
 
     runApp(GetMaterialApp(
+      title: "導師成績分析工具", // I18N
       debugShowCheckedModeBanner: false,
       initialRoute: Routes.HOME,
       theme: appThemeData,

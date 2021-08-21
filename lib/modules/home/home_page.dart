@@ -2,6 +2,7 @@ import 'package:class_grades_analyzer/controllers/exams_controller.dart';
 import 'package:class_grades_analyzer/controllers/mytab_controller.dart';
 import 'package:class_grades_analyzer/modules/course/course_page.dart';
 import 'package:class_grades_analyzer/modules/exam/exam_page.dart';
+import 'package:class_grades_analyzer/modules/home/my_drawer.dart';
 import 'package:class_grades_analyzer/modules/start/start_page.dart';
 import 'package:class_grades_analyzer/modules/student/student_page.dart';
 import 'package:flutter/material.dart';
@@ -15,12 +16,14 @@ class HomePage extends StatelessWidget {
     final c = Get.find<ExamsController>();
     final cTab = Get.find<MyTabController>();
     return Obx(() => Scaffold(
+        drawer: (c.exams.value == null) ? null : MyDrawer(),
         appBar: AppBar(
+          title: Text("導師成績分析專案"), // I18N
           bottom: TabBar(
             tabs: cTab.tNc.value.tabs,
             controller: cTab.tNc.value.controller,
           ),
-          ),
+        ),
         body:
             // Obx(() =>
             TabBarView(

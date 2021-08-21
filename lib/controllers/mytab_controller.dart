@@ -21,17 +21,15 @@ class MyTabController extends GetxController with SingleGetTickerProviderMixin {
           tabs: [Tab(icon: Icon(Icons.home))],
           controller: null as TabController)
       .obs;
-  // RxList<Tab> myTabs = [Tab(icon: Icon(Icons.home))].obs;
-  // Rx<TabController> controller = (null as TabController).obs;
-
+  
   @override
   void onInit() {
     super.onInit();
-    _updateAll(null);
-    _examListener = c.exams.listen(_updateAll);
+    _updateTab(null);
+    _examListener = c.exams.listen(_updateTab);
   }
 
-  void _updateAll(ExamsModel? exams) {
+  void _updateTab(ExamsModel? exams) {
     var tabs = <Tab>[
       Tab(icon: Icon(Icons.home)),
       ...((exams == null)

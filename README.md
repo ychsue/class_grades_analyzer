@@ -19,6 +19,9 @@
    2. [ ] 若投影 **student** 則可以為 average 與 SD (Standard Deviation)標準差
 
 # 進度
+## [2021-08-21] 想讓不同狀態下 Drawer 的 `onTap` 有不停功能
+1. 要做到這點，我可能得有一個 `StateController` 當作大家的頭，不然，這些 `Controller` 互相關聯，也會使得除錯變得困難。
+2. 星狀的話，就可以用假的來做測試了。 
 ## [2021-08-20] 為了能夠加速開發，因此，將整筆Data變成 JSON 檔
 1. 結果 `JsonDecoder().convert(...)` 所得到的結果還需要修改才能由 `fromJson` 灌入 Model 裡
 2. 參考 [此篇 StackOverflow](https://stackoverflow.com/questions/53376518/dart-json-string-convert-to-list-string) 可以解決。
