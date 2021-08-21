@@ -1,4 +1,4 @@
-import 'package:class_grades_analyzer/controllers/exam_controller.dart';
+import 'package:class_grades_analyzer/controllers/exams_controller.dart';
 import 'package:class_grades_analyzer/controllers/id_and_course_keys_controller.dart';
 import 'package:class_grades_analyzer/controllers/mytab_controller.dart';
 import 'package:class_grades_analyzer/modules/doing_sth/doing_sth_controller.dart';
@@ -15,7 +15,7 @@ void main() {
     //foundation.kReleaseMode) {
     Get.put(IdAndCourseKeysController());
     Get.put(DoingSthController());
-    Get.put(ExamController());
+    Get.put(ExamsController());
     Get.put(MyTabController());
 
     runApp(GetMaterialApp(

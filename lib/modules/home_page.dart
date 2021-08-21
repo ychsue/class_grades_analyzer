@@ -1,4 +1,4 @@
-import 'package:class_grades_analyzer/controllers/exam_controller.dart';
+import 'package:class_grades_analyzer/controllers/exams_controller.dart';
 import 'package:class_grades_analyzer/controllers/mytab_controller.dart';
 import 'package:class_grades_analyzer/modules/course/course_page.dart';
 import 'package:class_grades_analyzer/modules/exam/exam_page.dart';
@@ -12,7 +12,7 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final c = Get.find<ExamController>();
+    final c = Get.find<ExamsController>();
     final cTab = Get.find<MyTabController>();
     return Obx(() => Scaffold(
         appBar: AppBar(
