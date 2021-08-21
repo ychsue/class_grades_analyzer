@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:class_grades_analyzer/controllers/exams_controller.dart';
+import 'package:class_grades_analyzer/controllers/id_and_course_keys_controller.dart';
 import 'package:class_grades_analyzer/data/provider/from_excel_file/index.dart';
 import 'package:class_grades_analyzer/data/repository/get_exams.dart';
 import 'package:flutter/material.dart';
@@ -26,6 +27,10 @@ class StartPage extends StatelessWidget {
     c.exams.value = result; // trigger the ExamController
 
     debugPrint(jsonEncode(result));
+    final keyNames = Get.find<IdAndCourseKeysController>();
+    debugPrint("ids: ${jsonEncode(keyNames.currentIds)}");
+    debugPrint("courses: ${jsonEncode(keyNames.currentCourseKeys)}");
+    debugPrint("exams: ${jsonEncode(keyNames.currentExamKeys)}");
     return result;
   }
 }

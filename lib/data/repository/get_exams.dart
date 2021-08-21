@@ -1,7 +1,9 @@
 import 'dart:convert';
 
+import 'package:class_grades_analyzer/controllers/id_and_course_keys_controller.dart';
 import 'package:class_grades_analyzer/data/model/exams_model.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get.dart';
 import '../provider/from_excel_file/index.dart';
 import 'package:flutter/foundation.dart';
 
@@ -11,13 +13,18 @@ class GetExamsRepository {
   GetExamsRepository(this.api);
 
   Future<ExamsModel> getExamsAsync() async {
+    late ExamsModel exams;
     if (kDebugMode) {
       var json = JsonDecoder()
           .convert(await rootBundle.loadString("assets/exams.json"));
-      return ExamsModel.fromJson(json);
+      exams = ExamsModel.fromJson(json);
     } else {
-      return await api.getExamsAsync();
+      exams = await api.getExamsAsync();
     }
+
+    // * Update keys and ids
+    Get.find<IdAndCourseKeysController>().updateCurrentKeys(exams);
+    return exams;
   }
 
   updateExamsAsync(ExamsModel exams) {
