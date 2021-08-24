@@ -1,3 +1,4 @@
+import 'package:class_grades_analyzer/data/model/dimensions/tab_names.dart';
 import 'package:class_grades_analyzer/data/model/exams_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -14,13 +15,9 @@ class MyGlobalController extends GetxController {
   List<String> currentCourseKeys = [];
   List<String> currentExamKeys = [];
 
+
+
   Rx<ExamsModel?> exams = (null as ExamsModel).obs;
-  RxString tab = "HOME".obs;
+  RxString tab = (TabNames.home).obs;
 }
 
-abstract class TabNames {
-  static const home = "HOME";
-  static const exam = "EXAM";
-  static const student = "STUDENT";
-  static const course = "COURSE";
-}

@@ -1,10 +1,7 @@
-import 'dart:math';
-
 import 'package:class_grades_analyzer/controllers/id_and_course_keys_controller.dart';
 import 'package:class_grades_analyzer/data/model/one_exam_model.dart';
 import 'package:class_grades_analyzer/data/model/one_exam_row_model.dart';
 import 'package:class_grades_analyzer/data/model/one_record_model.dart';
-import 'package:class_grades_analyzer/data/model/extensions/virtual_courses.dart';
 import 'package:class_grades_analyzer/data/provider/from_excel_file/one_exam/__fill_the_ranks.dart';
 import 'package:class_grades_analyzer/data/provider/from_excel_file/one_exam/__get_key_columns.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -15,7 +12,7 @@ void main() {
     late OneExamModel oneExam;
     final ICKeys icKeys = ICKeys();
     setUp(() {
-      oneExam = OneExamModel(id: "102_1_1", students: [
+      oneExam = OneExamModel(name: "102_1_1", students: [
         OneExamRowModel(
           id: {"座號": 1, "姓名": "abc"},
           courses: {

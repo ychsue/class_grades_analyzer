@@ -1,9 +1,5 @@
-import 'dart:math';
-
 import 'package:class_grades_analyzer/controllers/id_and_course_keys_controller.dart';
 import 'package:class_grades_analyzer/data/model/one_exam_model.dart';
-import 'package:class_grades_analyzer/data/model/extensions/virtual_courses.dart';
-import 'package:class_grades_analyzer/data/model/one_record_model.dart';
 import 'package:class_grades_analyzer/data/provider/from_excel_file/one_exam/__fill_the_ranks.dart';
 import 'package:class_grades_analyzer/data/provider/from_excel_file/one_exam/__get_key_columns.dart';
 import 'package:class_grades_analyzer/data/provider/from_excel_file/one_exam/__get_one_student.dart';
@@ -16,7 +12,7 @@ OneExamModel getOneExamFromSheet(
   Sheet? sheet,
 ) {
   // Initialize result
-  OneExamModel result = OneExamModel(id: examName, students: []);
+  OneExamModel result = OneExamModel(name: examName, students: []);
 
   // 1. Input from Getx's controller
   var c = Get.find<IdAndCourseKeysController>();

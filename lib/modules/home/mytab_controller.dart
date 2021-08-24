@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:class_grades_analyzer/controllers/my_global_controller.dart';
+import 'package:class_grades_analyzer/data/model/dimensions/tab_names.dart';
 import 'package:class_grades_analyzer/data/model/exams_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

@@ -1,4 +1,3 @@
-import 'package:class_grades_analyzer/data/model/extensions/virtual_courses.dart';
 import 'package:class_grades_analyzer/data/model/one_exam_row_model.dart';
 import 'package:class_grades_analyzer/data/model/one_record_model.dart';
 

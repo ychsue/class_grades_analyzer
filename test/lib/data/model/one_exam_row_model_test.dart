@@ -1,7 +1,6 @@
 import 'package:class_grades_analyzer/controllers/id_and_course_keys_controller.dart';
 import 'package:class_grades_analyzer/data/model/one_exam_row_model.dart';
 import 'package:class_grades_analyzer/data/model/one_record_model.dart';
-import 'package:class_grades_analyzer/data/model/extensions/virtual_courses.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:get/get.dart';
 
