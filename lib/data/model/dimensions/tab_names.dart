@@ -4,19 +4,19 @@ abstract class TabNames {
   static const student = "student";
   static const course = "course";
 
-  String name(Tabs tab) {
+  static String name(TabsEnum tab) {
     String result = "";
     switch (tab) {
-      case Tabs.home:
+      case TabsEnum.home:
         result = home;
         break;
-      case Tabs.exam:
+      case TabsEnum.exam:
         result = exam;
         break;
-      case Tabs.student:
+      case TabsEnum.student:
         result = student;
         break;
-      case Tabs.course:
+      case TabsEnum.course:
         result = course;
         break;
       default:
@@ -25,20 +25,20 @@ abstract class TabNames {
     return result;
   }
 
-  Tabs tab(String name) {
+  static TabsEnum tab(String name) {
     var result;
     switch (name) {
       case home:
-        result = Tabs.home;
+        result = TabsEnum.home;
         break;
       case exam:
-        result = Tabs.exam;
+        result = TabsEnum.exam;
         break;
       case student:
-        result = Tabs.student;
+        result = TabsEnum.student;
         break;
       case course:
-        result = Tabs.course;
+        result = TabsEnum.course;
         break;
       default:
         assert(result == null, "name->tab fail");
@@ -48,7 +48,7 @@ abstract class TabNames {
   }
 }
 
-enum Tabs {
+enum TabsEnum {
   home,
   exam,
   student,

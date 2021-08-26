@@ -4,8 +4,8 @@ import 'package:class_grades_analyzer/controllers/my_global_controller.dart';
 import 'package:class_grades_analyzer/data/model/exams_model.dart';
 import 'package:get/get.dart';
 import 'package:rxdart/rxdart.dart';
-import 'exams/update_global_current_keys.dart';
-export 'exams/update_global_current_keys.dart';
+import 'exams/update_global_axes.dart';
+export 'exams/update_global_axes.dart';
 
 class ExamsController extends GetxController {
   /// IO [exams]
@@ -17,7 +17,7 @@ class ExamsController extends GetxController {
   @override
   void onInit() {
     exams.stream.takeUntil(_unsubscribed.stream).listen((exams) {
-      updateCurrentKeys(exams);
+      updateAxesIndices(exams);
       gC.exams.value = exams;
     });
     super.onInit();

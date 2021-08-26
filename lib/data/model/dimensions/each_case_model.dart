@@ -1,18 +1,21 @@
+import 'package:class_grades_analyzer/data/model/dimensions/dims_model.dart';
 import 'package:class_grades_analyzer/data/model/dimensions/tab_names.dart';
 
-class EachCaseModel {
-  List<String> exam = [""];
-  List<String> course = [""];
-  List<Map<String, dynamic>> student = [
-    {"座號": 1, "姓名": "XX昌"}
-  ];
-  Tabs main = (Tabs.exam);
-  Tabs x = (Tabs.course);
-  Tabs y = (Tabs.student);
+class EachCaseModel extends DimsModel {
+  // List<String> exam = [""];
+  // List<String> course = [""];
+  // List<Map<String, dynamic>> student = [
+  //   {"座號": 1, "姓名": "XX昌"}
+  // ];
+  TabsEnum main = (TabsEnum.exam);
+  TabsEnum x = (TabsEnum.course);
+  TabsEnum y = (TabsEnum.student);
 
   EachCaseModel({required this.main, required this.x, required this.y});
 
+  @override
   EachCaseModel.fromJson(Map<String, dynamic> json) {
+    super.fromJson(json);
     this.main = json['main'];
     this.x = json['x'];
     this.y = json['y'];
@@ -21,14 +24,12 @@ class EachCaseModel {
     this.student = json['student'];
   }
 
+  @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = super.toJson();
     data['main'] = this.main;
     data['x'] = this.x;
     data['y'] = this.y;
-    data['exam'] = this.exam;
-    data['course'] = this.course;
-    data['student'] = this.student;
 
     return data;
   }

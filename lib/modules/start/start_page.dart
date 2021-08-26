@@ -29,9 +29,9 @@ class StartPage extends StatelessWidget {
 
     debugPrint(jsonEncode(result));
     final gC = Get.find<MyGlobalController>();
-    debugPrint("ids: ${jsonEncode(gC.currentIds)}");
-    debugPrint("courses: ${jsonEncode(gC.currentCourseKeys)}");
-    debugPrint("exams: ${jsonEncode(gC.currentExamKeys)}");
+    debugPrint("ids: ${jsonEncode(gC.allAxes.student)}");
+    debugPrint("courses: ${jsonEncode(gC.allAxes.course)}");
+    debugPrint("exams: ${jsonEncode(gC.allAxes.exam)}");
     return result;
   }
 }

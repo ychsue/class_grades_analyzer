@@ -15,6 +15,8 @@ class MyTabController extends GetxController with SingleGetTickerProviderMixin {
 
   final _unsubscribe = StreamController<bool>.broadcast();
 
+  List<String> keys = [];
+
   /// Because the length of Tabs must be the same as of TabController
   /// They have to be loaded at the same time.
   /// Therefore, I combine them together
@@ -37,11 +39,11 @@ class MyTabController extends GetxController with SingleGetTickerProviderMixin {
   void _updateIndex() {
     var controller = tNc.value.controller;
     if (controller == null) return;
-    c.tab.value = MyGlobalController.Tabs.keys.toList()[controller.index];
+    c.tab.value = TabNames.tab(keys[controller.index]);
   }
 
   void _updateTab(ExamsModel? exams) {
-    var keys = MyGlobalController.Tabs.keys.toList();
+    keys = MyGlobalController.Tabs.keys.toList();
     var tabs = <Tab>[
       for (var i = 0; i < ((exams == null) ? 1 : keys.length); i++)
         Tab(

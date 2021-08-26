@@ -2,8 +2,8 @@ import 'package:class_grades_analyzer/controllers/exams_controller.dart';
 import 'package:class_grades_analyzer/data/model/exams_model.dart';
 import 'package:flutter/foundation.dart';
 
-extension UpdateGlobalCurrentKeys on ExamsController {
-  updateCurrentKeys(ExamsModel exams) {
+extension UpdateGlobalAxes on ExamsController {
+  updateAxesIndices(ExamsModel exams) {
     /// As described in [this StackOverflow](https://stackoverflow.com/questions/12030613/how-can-i-delete-duplicates-in-a-dart-list-list-distinct)
     /// I can use toSet=>toList to remove the duplicated one
     ///
@@ -26,8 +26,15 @@ extension UpdateGlobalCurrentKeys on ExamsController {
         }
       }
     }
-    gC.currentExamKeys = examKeyBuf.toList();
-    gC.currentIds = idsBuf.toList();
-    gC.currentCourseKeys = courseKeyBuf.toList();
+    gC.allAxes.exam = examKeyBuf.toList();
+    gC.allAxes.student = idsBuf.toList();
+    gC.allAxes.course = courseKeyBuf.toList();
+
+    // Now I need to update cases
+    for (var myCase in gC.caseShows) {
+      myCase.value.exam = List.of(gC.allAxes.exam);
+      myCase.value.student = List.of(gC.allAxes.student);
+      myCase.value.course = List.of(gC.allAxes.course);
+    }
   }
 }

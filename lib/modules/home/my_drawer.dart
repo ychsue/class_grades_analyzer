@@ -27,23 +27,23 @@ class MyDrawer extends StatelessWidget {
                         padding: EdgeInsets.fromLTRB(0, 24, 24, 0),
                         child: ListTile(
                           leading: Checkbox(value: true, onChanged: null),
-                          title: Text(gC.tab.value),
+                          title: Text(TabNames.name(gC.tab.value)),
                         ),
                       ),
                       children: [
                         Divider(),
-                        if (gC.tab.value == TabNames.exam)
-                          ...gC.currentExamKeys.map((e) => ListTile(
+                        if (gC.tab.value == TabsEnum.exam)
+                          ...gC.allAxes.exam.map((e) => ListTile(
                               leading: Checkbox(
                                 onChanged: null,
                                 value: true,
                               ),
                               title: Text(e)))
-                        else if (gC.tab.value == TabNames.student)
-                          ...gC.currentIds
+                        else if (gC.tab.value == TabsEnum.student)
+                          ...gC.allAxes.student
                               .map((e) => ListTile(title: Text(jsonEncode(e))))
-                        else if (gC.tab.value == TabNames.course)
-                          ...gC.currentCourseKeys
+                        else if (gC.tab.value == TabsEnum.course)
+                          ...gC.allAxes.course
                               .map((e) => ListTile(title: Text(e)))
                         else
                           ...[]
