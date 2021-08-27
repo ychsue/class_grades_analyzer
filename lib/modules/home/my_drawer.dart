@@ -1,7 +1,7 @@
-import 'dart:convert';
 
 import 'package:class_grades_analyzer/controllers/my_global_controller.dart';
 import 'package:class_grades_analyzer/data/model/dimensions/tab_names.dart';
+import 'package:class_grades_analyzer/modules/home/set_visibility_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -11,49 +11,49 @@ class MyDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var gC = Get.find<MyGlobalController>();
+    var axes = gC.cases.firstWhere((ele) => gC.tab.value == ele.value.main);
     return Drawer(
       child: ListView(
         children: [
+          Text("設定要顯示者：" // I18N
+              ),
+          Divider(),
           ListTile(
-            title: Text('想看對象'),
+            title: Text('主軸：' + TabNames.name(axes.value.main)), // I18N
+            leading: MyGlobalController.Tabs[TabNames.name(axes.value.main)],
             onTap: () {
               showDialog(
                   context: context,
                   builder: (ctx) {
-                    return SimpleDialog(
-                      titlePadding: EdgeInsets.fromLTRB(0, 0, 0, 0),
-                      title: Container(
-                        color: Colors.lime,
-                        padding: EdgeInsets.fromLTRB(0, 24, 24, 0),
-                        child: ListTile(
-                          leading: Checkbox(value: true, onChanged: null),
-                          title: Text(TabNames.name(gC.tab.value)),
-                        ),
-                      ),
-                      children: [
-                        Divider(),
-                        if (gC.tab.value == TabsEnum.exam)
-                          ...gC.allAxes.exam.map((e) => ListTile(
-                              leading: Checkbox(
-                                onChanged: null,
-                                value: true,
-                              ),
-                              title: Text(e)))
-                        else if (gC.tab.value == TabsEnum.student)
-                          ...gC.allAxes.student
-                              .map((e) => ListTile(title: Text(jsonEncode(e))))
-                        else if (gC.tab.value == TabsEnum.course)
-                          ...gC.allAxes.course
-                              .map((e) => ListTile(title: Text(e)))
-                        else
-                          ...[]
-                      ],
-                    );
+                    return SetVisibilityDialog(
+                        axes: axes, whichAxis: axes.value.main, gC: gC);
                   });
             },
-              // Get.snackbar(gC.tab.value, gC.tab.value);
-            
-          ), // I18N
+          ),
+          ListTile(
+            title: Text('X軸：' + TabNames.name(axes.value.x)), // I18N
+            leading: MyGlobalController.Tabs[TabNames.name(axes.value.x)],
+            onTap: () {
+              showDialog(
+                  context: context,
+                  builder: (ctx) {
+                    return SetVisibilityDialog(
+                        axes: axes, whichAxis: axes.value.x, gC: gC);
+                  });
+            },
+          ),
+          ListTile(
+            title: Text('Y軸：' + TabNames.name(axes.value.y)), // I18N
+            leading: MyGlobalController.Tabs[TabNames.name(axes.value.y)],
+            onTap: () {
+              showDialog(
+                  context: context,
+                  builder: (ctx) {
+                    return SetVisibilityDialog(
+                        axes: axes, whichAxis: axes.value.y, gC: gC);
+                  });
+            },
+          ),
         ],
       ),
     );

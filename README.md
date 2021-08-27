@@ -20,6 +20,8 @@
 5. [ ] 使用 **TabBar** 來顯示這三種類型，由 **Drawer** 來操控個別類型
 
 # 進度
+## [2021-08-27] 考量到未來可能會希望不同case 下順序不同，所以，創造一個 `PairModel` 來同時存 indices 與 是否被選取。
+目前只差 reorder的部分，可能要由 `SimpleDialog` 換到 `Dialog` 了。
 ## [2021-08-26] 將 `exam`, `student` 與 `course` 看成是 `x`, `y`, `z` 三個軸(Axes)
 1. 既然這些叫軸，那麼它其上的 `indices` 就不是連續實數，而是各考試、各學生與各科了。
 2. 而slice它時，主要有沿三個軸切的，所以有三種cases，它們以 `TabsEnum` 來區隔是哪個當法線。

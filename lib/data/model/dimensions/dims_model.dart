@@ -1,16 +1,21 @@
 import 'package:class_grades_analyzer/data/model/dimensions/tab_names.dart';
+import 'package:class_grades_analyzer/data/model/pair.dart';
 
 class DimsModel {
-  List<String> exam = [""];
-  List<String> course = [""];
-  List<Map<String, dynamic>> student = [
-    {"座號": 1, "姓名": "XX昌"}
+  List<PairModel<String, bool>> exam = [];
+  List<PairModel<String, bool>> course = [];
+  List<PairModel<Map<String, dynamic>, bool>> student = [
+    PairModel({"座號": 1, "姓名": "XX昌"}, true)
   ];
 
   DimsModel();
 
   DimsModel.fromJson(Map<String, dynamic> json) {
     this.fromJson(json);
+  }
+
+  DimsModel.of(DimsModel dims) {
+    this.fromJson(dims.toJson());
   }
 
   List<dynamic>? getDimByEnum(TabsEnum dim) {
@@ -27,8 +32,8 @@ class DimsModel {
   }
 
   fromJson(Map<String, dynamic> json) {
-    this.exam = List<String>.from(json['exam']);
-    this.course = List<String>.from(json['course']);
+    this.exam = List<PairModel<String, bool>>.from(json['exam']);
+    this.course = List<PairModel<String, bool>>.from(json['course']);
     this.student = json['student'];
   }
 

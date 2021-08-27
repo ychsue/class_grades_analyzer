@@ -1,5 +1,5 @@
-import 'package:class_grades_analyzer/controllers/exams_controller.dart';
 import 'package:class_grades_analyzer/controllers/my_global_controller.dart';
+import 'package:class_grades_analyzer/data/model/dimensions/tab_names.dart';
 import 'package:class_grades_analyzer/modules/home/mytab_controller.dart';
 import 'package:class_grades_analyzer/modules/course/course_page.dart';
 import 'package:class_grades_analyzer/modules/exam/exam_page.dart';
@@ -17,7 +17,9 @@ class HomePage extends StatelessWidget {
     final c = Get.find<MyGlobalController>();
     final cTab = Get.find<MyTabController>();
     return Obx(() => Scaffold(
-        drawer: (c.exams.value == null) ? null : MyDrawer(),
+        drawer: (c.exams.value == null || c.tab.value == TabsEnum.home)
+            ? null
+            : MyDrawer(),
         appBar: AppBar(
           title: Text("導師成績分析專案"), // I18N
           bottom: TabBar(

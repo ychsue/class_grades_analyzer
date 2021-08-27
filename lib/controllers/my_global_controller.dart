@@ -14,7 +14,7 @@ class MyGlobalController extends GetxController {
   };
 
   DimsModel allAxes = DimsModel();
-  Set<Rx<EachCaseModel>> caseShows = {
+  Set<Rx<EachCaseModel>> cases = {
     EachCaseModel(main: TabsEnum.exam, x: TabsEnum.course, y: TabsEnum.student)
         .obs,
     EachCaseModel(main: TabsEnum.student, x: TabsEnum.course, y: TabsEnum.exam)
