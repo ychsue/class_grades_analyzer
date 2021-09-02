@@ -1,3 +1,4 @@
+import 'package:class_grades_analyzer/modules/dims/dims_page.dart';
 import 'package:flutter/material.dart';
 
 class ExamPage extends StatelessWidget {
@@ -13,9 +14,7 @@ class ExamPage extends StatelessWidget {
           scrollDirection: Axis.vertical,
           child: Column(
             children: [
-              for (var i = 0; i < 60; i++)
-                Text(
-                    'test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test '),
+              DimsPage(),
             ],
           ),
         ),

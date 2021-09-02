@@ -1,10 +1,15 @@
 import 'package:class_grades_analyzer/data/model/one_exam_row_model.dart';
+import 'package:flutter/foundation.dart';
 
 class OneExamModel {
   String name = "110_1";
   List<OneExamRowModel> students = [];
 
   OneExamModel({required this.name, required this.students});
+
+  OneExamRowModel getStudent(Map<String, dynamic> id) {
+    return students.firstWhere((ele) => mapEquals(id, ele.id));
+  }
 
   add(OneExamRowModel student) {
     students.add(student);

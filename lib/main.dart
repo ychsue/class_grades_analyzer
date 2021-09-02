@@ -1,6 +1,7 @@
 import 'package:class_grades_analyzer/controllers/exams_controller.dart';
 import 'package:class_grades_analyzer/controllers/id_and_course_keys_controller.dart';
 import 'package:class_grades_analyzer/controllers/my_global_controller.dart';
+import 'package:class_grades_analyzer/modules/dims/dims_controller.dart';
 import 'package:class_grades_analyzer/modules/home/mytab_controller.dart';
 import 'package:class_grades_analyzer/modules/doing_sth/doing_sth_controller.dart';
 import 'package:class_grades_analyzer/my_test_widgets/main_test.dart';
@@ -19,6 +20,7 @@ void main() {
     Get.put(DoingSthController());
     Get.put(ExamsController());
     Get.put(MyTabController());
+    Get.put(DimsController());
 
     runApp(GetMaterialApp(
       title: "導師成績分析工具", // I18N

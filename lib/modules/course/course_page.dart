@@ -1,3 +1,4 @@
+import 'package:class_grades_analyzer/modules/dims/dims_page.dart';
 import 'package:flutter/material.dart';
 
 class CoursePage extends StatelessWidget {
@@ -5,8 +6,6 @@ class CoursePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Text("Course Page"),
-    );
+    return DimsPage();
   }
 }

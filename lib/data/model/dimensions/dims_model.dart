@@ -18,7 +18,7 @@ class DimsModel {
     this.fromJson(dims.toJson());
   }
 
-  List<dynamic>? getDimByEnum(TabsEnum dim) {
+  List<PairModel<dynamic, bool>>? getDimByEnum(TabsEnum dim) {
     switch (dim) {
       case TabsEnum.exam:
         return exam;

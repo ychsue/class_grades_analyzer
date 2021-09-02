@@ -8,6 +8,10 @@ class ExamsModel {
   List<OneExamModel> exams = [];
   List<String> examNames = [];
 
+  OneExamModel getExam(String name) {
+    return exams.firstWhere((ele) => ele.name == name);
+  }
+
   add(OneExamModel exam) {
     exams.add(exam);
   }

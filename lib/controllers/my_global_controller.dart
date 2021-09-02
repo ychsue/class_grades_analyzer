@@ -13,6 +13,8 @@ class MyGlobalController extends GetxController {
     TabNames.course: Icon(Icons.auto_stories),
   };
 
+  final gType = GradeTypes.numb.obs;
+
   DimsModel allAxes = DimsModel();
   Set<Rx<EachCaseModel>> cases = {
     EachCaseModel(main: TabsEnum.exam, x: TabsEnum.course, y: TabsEnum.student)
@@ -25,4 +27,9 @@ class MyGlobalController extends GetxController {
 
   Rx<ExamsModel?> exams = (null as ExamsModel).obs;
   Rx<TabsEnum> tab = (TabsEnum.home).obs;
+}
+
+enum GradeTypes {
+  numb,
+  rank,
 }

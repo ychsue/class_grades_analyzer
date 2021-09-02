@@ -25,6 +25,10 @@ class OneExamRowModel {
     this.courses = courses;
   }
 
+  OneRecordModel? getCourse(String name) {
+    return courses[name];
+  }
+
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['courses'] = this.courses;
