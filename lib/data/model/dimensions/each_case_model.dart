@@ -1,17 +1,17 @@
+import 'package:class_grades_analyzer/data/model/dimensions/dim_ind_types.dart';
 import 'package:class_grades_analyzer/data/model/dimensions/dims_model.dart';
 import 'package:class_grades_analyzer/data/model/dimensions/tab_names.dart';
 import 'package:class_grades_analyzer/data/model/pair.dart';
 
-class EachCaseModel {
+class EachCaseModel extends DimsIndTypes<TabsEnum> {
   DimsModel sortIndices = DimsModel();
-  // DimsModel visibleIndices = DimsModel();
-
-  TabsEnum main = (TabsEnum.exam);
-  TabsEnum x = (TabsEnum.course);
-  TabsEnum y = (TabsEnum.student);
-
+  
   // #region Constructor
-  EachCaseModel({required this.main, required this.x, required this.y});
+  EachCaseModel({required main, required x, required y}) {
+    this.main = main;
+    this.x = x;
+    this.y = y;
+  }
 
   EachCaseModel.fromJson(Map<String, dynamic> json) {
     this.fromJson(json);

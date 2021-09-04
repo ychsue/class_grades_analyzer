@@ -6,19 +6,6 @@ class ExamPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Align(
-      alignment: Alignment.center,
-      child: SingleChildScrollView(
-        scrollDirection: Axis.horizontal,
-        child: SingleChildScrollView(
-          scrollDirection: Axis.vertical,
-          child: Column(
-            children: [
-              DimsPage(),
-            ],
-          ),
-        ),
-      ),
-    );
+    return DimsPage();
   }
 }
