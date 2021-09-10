@@ -23,10 +23,16 @@ class OneExamRowModel {
     var courses = (json['courses'] as Map<String, dynamic>)
         .map((key, value) => MapEntry(key, OneRecordModel.fromJson(value)));
     this.courses = courses;
+    this.vCourses = VCoursesModel(parent: this);
   }
 
   OneRecordModel? getCourse(String name) {
-    return courses[name];
+    if (name == VCourseNames.sum)
+      return vCourses.sum;
+    else if (name == VCourseNames.average)
+      return vCourses.average;
+    else
+      return courses[name];
   }
 
   Map<String, dynamic> toJson() {
@@ -35,4 +41,9 @@ class OneExamRowModel {
     data['id'] = this.id;
     return data;
   }
+}
+
+abstract class VCourseNames {
+  static String sum = "sum";
+  static String average = "average";
 }

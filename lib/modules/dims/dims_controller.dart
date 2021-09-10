@@ -44,7 +44,7 @@ class DimsController extends GetxController {
   DimsIndTypes<List<PairModel<dynamic, bool>>>? get Inds {
     final buf = gC.cases.where((ele) => ele.value.main == gC.tab.value);
     final result = DimsIndTypes<List<PairModel<dynamic, bool>>>();
-    if (buf.length == 0) return result;
+    if (buf.length == 0) return null;
     axes = buf.first;
     result
       ..main = axes.value.sortIndices

@@ -15,23 +15,42 @@ class ShowTables extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      children: getTables(),
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: SingleChildScrollView(
+        scrollDirection: Axis.vertical,
+        child: Obx(() => LimitedBox(
+              maxWidth: (MediaQuery.of(context).size.width > inds.x.length * 80)
+                  ? MediaQuery.of(context).size.width
+                  : inds.x.length * 80,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: getTables(),
+              ),
+            )),
+      ),
     );
   }
 
   List<Widget> getTables() {
     List<Widget> result = [];
+    if (inds.main.length == 0 || inds.x.length == 0 || inds.y.length == 0)
+      return [];
+      
     for (var iMain = 0; iMain < inds.main.length; iMain++) {
       final List<Widget> aTable = [];
-      aTable.add(AppBar(
-        title: Center(child: Text("${inds.main[iMain].t1}")),
-        automaticallyImplyLeading: false,
-      )); // Each Main
+      aTable.add(
+        AppBar(
+          title: Center(child: Text("${inds.main[iMain].t1}")),
+          automaticallyImplyLeading: false,
+        ),
+      ); // Each Main
 
       List<num?> minMax = getMinMax(data[iMain]);
 
       aTable.add(DataTable(
+        columnSpacing: 0,
         columns: genColumns(),
         rows: [
           for (var iy = 0; iy < inds.y.length; iy++)
@@ -41,6 +60,7 @@ class ShowTables extends StatelessWidget {
 
       result.add(Container(
         padding: EdgeInsets.all(8.0),
+        margin: EdgeInsets.all(8.0),
         decoration: BoxDecoration(
             border: Border.all(), borderRadius: BorderRadius.circular(8.0)),
         child: Column(
@@ -103,7 +123,13 @@ class ShowTables extends StatelessWidget {
       default:
     }
     stCols.addAll(inds.x.map((e) => e.t1.toString()));
-    result.addAll(stCols.map((e) => DataColumn(label: Text(e))).toList());
+    result.addAll(stCols
+        .map((e) => DataColumn(
+                label: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(e),
+            )))
+        .toList());
     return result;
   }
 
@@ -146,8 +172,10 @@ class ShowTables extends StatelessWidget {
     if (num.tryParse(e) != null && minMax.every((ele) => ele != null)) {
       final val = num.parse(e);
       final del = minMax[1]! - minMax[0]!;
-      return Color.lerp(Colors.grey, Colors.white, (val - minMax[0]!) / del) ??
-          Colors.transparent;
+      return (del != 0)
+          ? Color.lerp(Colors.grey, Colors.white, (val - minMax[0]!) / del) ??
+              Colors.transparent
+          : Colors.transparent;
     }
     return Colors.transparent;
   }

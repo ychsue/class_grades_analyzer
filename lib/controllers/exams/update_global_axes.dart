@@ -1,6 +1,6 @@
 import 'package:class_grades_analyzer/controllers/exams_controller.dart';
-import 'package:class_grades_analyzer/data/model/dimensions/tab_names.dart';
 import 'package:class_grades_analyzer/data/model/exams_model.dart';
+import 'package:class_grades_analyzer/data/model/one_exam_row_model.dart';
 import 'package:class_grades_analyzer/data/model/pair.dart';
 import 'package:flutter/foundation.dart';
 
@@ -35,18 +35,22 @@ extension UpdateGlobalAxes on ExamsController {
         .toList();
     gC.allAxes.course =
         courseKeyBuf.map((e) => PairModel<String, bool>(e, true)).toList();
-
+    // Add virtual courses
+    gC.allAxes.course.addAll([
+      PairModel(VCourseNames.average, true),
+      PairModel(VCourseNames.sum, false)
+    ]);
     // Now I need to update cases
     for (var myCase in gC.cases) {
       myCase.value.sortIndices.exam =
           gC.allAxes.exam.map((e) => PairModel.of(e)).toList();
-      myCase.value.toSelAll(axisEnum: TabsEnum.exam);
+      // myCase.value.toSelAll(axisEnum: TabsEnum.exam);
       myCase.value.sortIndices.student =
           gC.allAxes.student.map((e) => PairModel.of(e)).toList();
-      myCase.value.toSelAll(axisEnum: TabsEnum.student);
+      // myCase.value.toSelAll(axisEnum: TabsEnum.student);
       myCase.value.sortIndices.course =
           gC.allAxes.course.map((e) => PairModel.of(e)).toList();
-      myCase.value.toSelAll(axisEnum: TabsEnum.course);
+      // myCase.value.toSelAll(axisEnum: TabsEnum.course);
       myCase.refresh();
     }
   }
