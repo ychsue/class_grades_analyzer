@@ -1,6 +1,6 @@
-
 import 'package:class_grades_analyzer/controllers/my_global_controller.dart';
 import 'package:class_grades_analyzer/data/model/dimensions/tab_names.dart';
+import 'package:class_grades_analyzer/data/model/grade_or_rank.dart';
 import 'package:class_grades_analyzer/modules/home/set_visibility_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -15,8 +15,13 @@ class MyDrawer extends StatelessWidget {
     return Drawer(
       child: ListView(
         children: [
-          Text("設定要顯示者：" // I18N
-              ),
+          Center(
+            child: Text(
+              "設定要顯示者：" // I18N
+              ,
+              style: Theme.of(context).textTheme.subtitle1,
+            ),
+          ),
           Divider(),
           ListTile(
             title: Text('主軸：' + TabNames.name(axes.value.main)), // I18N
@@ -54,6 +59,30 @@ class MyDrawer extends StatelessWidget {
                   });
             },
           ),
+          Divider(),
+          Center(
+            child: Text(
+              "成績或名次等：" // I18N
+              ,
+              style: Theme.of(context).textTheme.subtitle1,
+            ),
+          ),
+          Divider(),
+          ListTile(
+            title: Obx(() => DropdownButton<GradeOrRankEnum>(
+                  value: gC.gType.value,
+                  items: GradeOrRankEnum.values
+                      .map((e) => DropdownMenuItem(
+                            child: Text(gC.gNames.value.enum2Name(e) ??
+                                "${DateTime.now().toString()}"),
+                            value: e,
+                          ))
+                      .toList(),
+                  onChanged: (v) {
+                    gC.gType.value = v ?? gC.gType.value;
+                  },
+                )),
+          )
         ],
       ),
     );

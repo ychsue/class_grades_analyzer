@@ -3,7 +3,7 @@ import 'package:class_grades_analyzer/data/model/dimensions/tab_names.dart';
 import 'package:class_grades_analyzer/modules/home/mytab_controller.dart';
 import 'package:class_grades_analyzer/modules/course/course_page.dart';
 import 'package:class_grades_analyzer/modules/exam/exam_page.dart';
-import 'package:class_grades_analyzer/modules/home/my_drawer.dart';
+import 'package:class_grades_analyzer/modules/home/my_drawer/my_drawer.dart';
 import 'package:class_grades_analyzer/modules/start/start_page.dart';
 import 'package:class_grades_analyzer/modules/student/student_page.dart';
 import 'package:flutter/material.dart';

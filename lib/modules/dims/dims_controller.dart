@@ -4,6 +4,7 @@ import 'package:class_grades_analyzer/controllers/my_global_controller.dart';
 import 'package:class_grades_analyzer/data/model/dimensions/dim_ind_types.dart';
 import 'package:class_grades_analyzer/data/model/dimensions/each_case_model.dart';
 import 'package:class_grades_analyzer/data/model/dimensions/tab_names.dart';
+import 'package:class_grades_analyzer/data/model/grade_or_rank.dart';
 import 'package:class_grades_analyzer/data/model/pair.dart';
 import 'package:get/get.dart';
 import 'package:rxdart/rxdart.dart' as rxdart;
@@ -26,6 +27,9 @@ class DimsController extends GetxController {
       setdata();
     });
 
+    gC.gType.stream.takeUntil(_unsubscribed.stream).listen((t) {
+      setdata();
+    });
     super.onInit();
   }
 
@@ -116,10 +120,10 @@ class DimsController extends GetxController {
 
                 dynamic result;
                 switch (gType) {
-                  case GradeTypes.numb:
+                  case GradeOrRankEnum.grade:
                     result = grade?.numb;
                     break;
-                  case GradeTypes.rank:
+                  case GradeOrRankEnum.rank:
                     result = grade?.rank;
                     break;
                   default:

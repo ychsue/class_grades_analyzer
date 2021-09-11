@@ -2,6 +2,7 @@ import 'package:class_grades_analyzer/data/model/dimensions/dims_model.dart';
 import 'package:class_grades_analyzer/data/model/dimensions/each_case_model.dart';
 import 'package:class_grades_analyzer/data/model/dimensions/tab_names.dart';
 import 'package:class_grades_analyzer/data/model/exams_model.dart';
+import 'package:class_grades_analyzer/data/model/grade_or_rank.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -12,8 +13,6 @@ class MyGlobalController extends GetxController {
     TabNames.student: Icon(Icons.person),
     TabNames.course: Icon(Icons.auto_stories),
   };
-
-  final gType = GradeTypes.numb.obs;
 
   DimsModel allAxes = DimsModel();
   Set<Rx<EachCaseModel>> cases = {
@@ -27,9 +26,10 @@ class MyGlobalController extends GetxController {
 
   Rx<ExamsModel?> exams = (null as ExamsModel).obs;
   Rx<TabsEnum> tab = (TabsEnum.home).obs;
-}
 
-enum GradeTypes {
-  numb,
-  rank,
+  // For showing grade or rank
+  final gType = GradeOrRankEnum.grade.obs;
+  final gNames = GradeOrRankModel(gradeName: "成績", rankName: "名次")
+      .obs; //If you want to set it, provide a new one.
+
 }
