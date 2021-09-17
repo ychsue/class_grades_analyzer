@@ -2,6 +2,7 @@ import 'package:class_grades_analyzer/controllers/my_global_controller.dart';
 import 'package:class_grades_analyzer/data/model/dimensions/tab_names.dart';
 import 'package:class_grades_analyzer/data/model/grade_or_rank.dart';
 import 'package:class_grades_analyzer/modules/home/set_visibility_dialog.dart';
+import 'package:class_grades_analyzer/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -82,7 +83,22 @@ class MyDrawer extends StatelessWidget {
                     gC.gType.value = v ?? gC.gType.value;
                   },
                 )),
-          )
+          ),
+          Divider(),
+          Center(
+            child: Text(
+              "產生PDF檔好列印：" // I18N
+              ,
+              style: Theme.of(context).textTheme.subtitle1,
+            ),
+          ),
+          Divider(),
+          IconButton(
+            onPressed: () {
+              Get.toNamed(Routes.PDFVIEW);
+            },
+            icon: Icon(Icons.picture_as_pdf),
+          ), // TODO
         ],
       ),
     );
