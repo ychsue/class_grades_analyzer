@@ -1,26 +1,18 @@
+import 'dart:convert';
+
 import 'package:class_grades_analyzer/modules/pdf_view/pdf_declare_drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class PdfViewPage extends StatefulWidget {
-  PdfViewPage({Key? key}) : super(key: key);
+import 'pdf_view_controller.dart';
 
-  @override
-  _PdfViewPageState createState() => _PdfViewPageState();
-}
-
-class _PdfViewPageState extends State<PdfViewPage> {
+class PdfViewPage extends GetView<PdfViewController> {
   static GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
-  void initState() {
-    super.initState();
+  Widget build(BuildContext context) {
     Future.delayed(const Duration(milliseconds: 0))
         .then((value) => _scaffoldKey.currentState?.openDrawer());
-  }
-
-  @override
-  Widget build(BuildContext context) {
     return Scaffold(
       key: _scaffoldKey,
       drawer: PdfDeclareDrawer(),
@@ -36,13 +28,10 @@ class _PdfViewPageState extends State<PdfViewPage> {
           ),
         ],
       ),
-      body: Builder(
-        builder: (ctx) {
-          debugPrint("currentState: ${_scaffoldKey.currentState}");
-          _scaffoldKey.currentState!.openDrawer();
-          return Container();
-        },
-      ),
+      body: Obx(() {
+        var buf = controller.currentDeclare.value;
+        return Text(jsonEncode(buf)); // TODO
+      }),
     );
   }
 }

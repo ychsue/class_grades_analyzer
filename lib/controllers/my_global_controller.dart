@@ -3,6 +3,7 @@ import 'package:class_grades_analyzer/data/model/dimensions/each_case_model.dart
 import 'package:class_grades_analyzer/data/model/dimensions/tab_names.dart';
 import 'package:class_grades_analyzer/data/model/exams_model.dart';
 import 'package:class_grades_analyzer/data/model/grade_or_rank.dart';
+import 'package:class_grades_analyzer/data/model/pdf/main_pdf_declarer.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -32,4 +33,14 @@ class MyGlobalController extends GetxController {
   final gNames = GradeOrRankModel(gradeName: "成績", rankName: "名次")
       .obs; //If you want to set it, provide a new one.
 
+
+  // For PDF
+  final List<Rx<MainPdfDeclarerModel>> allMainPdfDeclares =
+      <Rx<MainPdfDeclarerModel>>[
+    (MainPdfDeclarerModel(main: TabsEnum.exam)
+          ..headerScript = "\$1班 第\$2學期 第\$3次月考")
+        .obs, //I18N
+    MainPdfDeclarerModel(main: TabsEnum.student).obs,
+    MainPdfDeclarerModel(main: TabsEnum.course).obs,
+  ];
 }
