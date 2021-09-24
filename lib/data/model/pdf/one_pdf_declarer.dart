@@ -1,6 +1,7 @@
 import 'package:class_grades_analyzer/data/model/grade_or_rank.dart';
 import 'package:class_grades_analyzer/data/model/pdf/ind_declare_enum.dart';
 import 'package:class_grades_analyzer/data/model/pdf/pdf_item_type.dart';
+export 'fun_for_one_pdf_declarer.dart';
 
 class OnePdfDeclarerModel {
   bool exchangeXY = false;

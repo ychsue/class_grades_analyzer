@@ -6,6 +6,7 @@ import 'package:class_grades_analyzer/data/model/grade_or_rank.dart';
 import 'package:class_grades_analyzer/data/model/pdf/main_pdf_declarer.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:pdf/widgets.dart' as pw;
 
 class MyGlobalController extends GetxController {
   static const Map<String, Icon> Tabs = {
@@ -14,6 +15,8 @@ class MyGlobalController extends GetxController {
     TabNames.student: Icon(Icons.person),
     TabNames.course: Icon(Icons.auto_stories),
   };
+
+  pw.TtfFont? ttf;
 
   DimsModel allAxes = DimsModel();
   Set<Rx<EachCaseModel>> cases = {
@@ -32,7 +35,6 @@ class MyGlobalController extends GetxController {
   final gType = GradeOrRankEnum.grade.obs;
   final gNames = GradeOrRankModel(gradeName: "成績", rankName: "名次")
       .obs; //If you want to set it, provide a new one.
-
 
   // For PDF
   final List<Rx<MainPdfDeclarerModel>> allMainPdfDeclares =

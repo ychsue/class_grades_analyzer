@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 class PdfViewController extends GetxController {
   late Rx<MainPdfDeclarerModel> currentDeclare;
   late MyGlobalController gC;
+  final isOkay2Draw = false.obs;
 
   @override
   void onInit() {

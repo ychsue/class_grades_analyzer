@@ -1,10 +1,11 @@
-import 'dart:convert';
-
+import 'package:class_grades_analyzer/modules/pdf_view/gen_pdf_doc.dart';
 import 'package:class_grades_analyzer/modules/pdf_view/pdf_declare_drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'pdf_view_controller.dart';
+
+import 'package:printing/printing.dart';
 
 class PdfViewPage extends GetView<PdfViewController> {
   static GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
@@ -29,8 +30,9 @@ class PdfViewPage extends GetView<PdfViewController> {
         ],
       ),
       body: Obx(() {
-        var buf = controller.currentDeclare.value;
-        return Text(jsonEncode(buf)); // TODO
+        final isOkay2Draw = controller.isOkay2Draw.value;
+        return PdfPreview(
+            build: (format) => genPdfDoc(format, controller, isOkay2Draw));
       }),
     );
   }
