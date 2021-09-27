@@ -20,6 +20,7 @@
 5. [x] 使用 **TabBar** 來顯示這三種類型，由 **Drawer** 來操控個別類型
 
 # 進度
+## [2021-09-27] 初步印出頁面的標頭了
 ## [2021-09-24] packages 的問題
 1. 首先， `printing` 與 `excel` 都用到了 `xml`, `archive` 等 packages，然而，由於 `excel` 的新版有問題，所以我用的是舊版，結果就有了 `xml`與`archive` 相衝的問題。
    1. 解決法是在 pubspec.yaml 的 `dependency-overrides` 裡將上述兩個的較新版本宣告進來，還在測試中，不知會否出問題。

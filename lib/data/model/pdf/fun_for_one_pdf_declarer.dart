@@ -9,9 +9,10 @@ extension FunForOnePdfDeclarer on OnePdfDeclarerModel {
     if (expression == "") return result;
 
     List<String> inList = [];
-    if (input is Map) {
+    if (input.runtimeType.toString() == "_JsonMap") {
       inList.add(jsonEncode(input));
-      inList.addAll(input.values.map((e) => e.toString()).toList());
+      final allEle = List<String>.from(input.values.map((e) => e.toString()));
+      inList.addAll(allEle);
     } else if (input is String) {
       inList.add(input);
       inList.addAll(input.split("_"));

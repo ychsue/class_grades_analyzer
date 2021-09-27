@@ -87,7 +87,15 @@ class PdfDeclareDrawer extends StatelessWidget {
                   color: Colors.blue,
                 ),
               ),
-              ElevatedButton(onPressed: null, child: Text("執行")), //I18N
+              ElevatedButton(
+                  onPressed: () {
+                    if (c.isOkay2Draw.value == true) {
+                      c.isOkay2Draw.refresh();
+                    } else {
+                      c.isOkay2Draw.value = true;
+                    }
+                  },
+                  child: Text("執行")), //I18N
             ],
           ),
         ],
