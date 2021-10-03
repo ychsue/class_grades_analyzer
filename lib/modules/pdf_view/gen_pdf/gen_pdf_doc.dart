@@ -1,7 +1,8 @@
 import 'dart:typed_data';
 import 'package:class_grades_analyzer/data/model/dimensions/tab_names.dart';
-import 'package:class_grades_analyzer/data/model/pdf/ind_declare_enum.dart';
 import 'package:class_grades_analyzer/data/model/pdf/one_pdf_declarer.dart';
+import 'package:class_grades_analyzer/modules/pdf_view/gen_pdf/gen_one_pdf_item.dart';
+import 'functions/get_inds.dart';
 import 'package:class_grades_analyzer/modules/pdf_view/pdf_view_controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:pdf/pdf.dart';
@@ -43,34 +44,23 @@ Future<Uint8List> genPdfDoc(PdfPageFormat format, PdfViewController ctrler,
   // * 1. Get main Inds
   final currentDeclare = ctrler.currentDeclare.value;
   final mainIndType = currentDeclare.indType;
-  late List<dynamic> mainInds;
+  final List<dynamic> mainInds =
+      getInds(indType: mainIndType, viewInds: ctrler.main, n: currentDeclare.n);
 
-  switch (mainIndType) {
-    case IndDeclarerEnum.all:
-      mainInds = ctrler.main.map((e) => e.t1).toList();
-      break;
-    case IndDeclarerEnum.asTableView:
-      mainInds = ctrler.main.where((e) => e.t2).map((e) => e.t1).toList();
-      break;
-    case IndDeclarerEnum.firstN:
-      mainInds =
-          ctrler.main.sublist(0, currentDeclare.n).map((e) => e.t1).toList();
-      break;
-    case IndDeclarerEnum.custom:
-      // TODO
-      break;
-    default:
-  }
-
-  for (var item in mainInds) {
+  for (var mainInd in mainInds) {
   doc.addPage(
       pw.Page(
         pageFormat: format,
         theme: theme,
         build: (ctx) => pw.Column(children: [
+          // headerr
           pw.Center(
               child: pw.Text(FunForOnePdfDeclarer.genStringFromExpression(
-                  input: item, expression: currentDeclare.headerScript))),
+                  input: mainInd, expression: currentDeclare.headerScript))),
+          pw.Expanded(
+            child: genOnePdfItem(format, ctrler, mainInd,
+                ctrler.currentDeclare.value.children[0]),
+          ),
         ]),
       ),
     );    

@@ -5,7 +5,7 @@ export 'fun_for_one_pdf_declarer.dart';
 
 class OnePdfDeclarerModel {
   bool exchangeXY = false;
-  IndDeclarerEnum xType = IndDeclarerEnum.all;
+  IndDeclarerEnum xType = IndDeclarerEnum.asTableView;
   int nx = 1;
   IndDeclarerEnum yType = IndDeclarerEnum.firstN;
   int ny = 1;

@@ -5,6 +5,8 @@ import 'package:class_grades_analyzer/data/model/exams_model.dart';
 import 'package:class_grades_analyzer/data/model/grade_or_rank.dart';
 import 'package:class_grades_analyzer/data/model/pdf/ind_declare_enum.dart';
 import 'package:class_grades_analyzer/data/model/pdf/main_pdf_declarer.dart';
+import 'package:class_grades_analyzer/data/model/pdf/one_pdf_declarer.dart';
+import 'package:class_grades_analyzer/data/model/pdf/pdf_item_type.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pdf/widgets.dart' as pw;
@@ -41,12 +43,21 @@ class MyGlobalController extends GetxController {
   final List<Rx<MainPdfDeclarerModel>> allMainPdfDeclares =
       <Rx<MainPdfDeclarerModel>>[
     (MainPdfDeclarerModel(main: TabsEnum.exam)
-          ..headerScript = "\$1班 第\$2學期 第\$3次月考")
+          ..headerScript = "\$1班 第\$2學期 第\$3次月考"
+          ..children = [OnePdfDeclarerModel()..yType = IndDeclarerEnum.all])
         .obs, //I18N
     (MainPdfDeclarerModel(main: TabsEnum.student)
           ..headerScript = "座號：\$1，姓名：\$2"
+          ..children = [
+            OnePdfDeclarerModel()
+              ..type = PdfItemTypeEnum.tbl_chart
+              ..ny = 2
+          ]
           ..indType = IndDeclarerEnum.all)
         .obs,
-    MainPdfDeclarerModel(main: TabsEnum.course).obs,
+    (MainPdfDeclarerModel(main: TabsEnum.course)
+          ..indType = IndDeclarerEnum.all
+          ..children = [OnePdfDeclarerModel()..yType = IndDeclarerEnum.all])
+        .obs,
   ];
 }
