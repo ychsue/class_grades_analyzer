@@ -4,6 +4,8 @@ import 'package:class_grades_analyzer/modules/pdf_view/pdf_view_controller.dart'
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import 'update_main_declarer.dart';
+
 class PdfDeclareDrawer extends StatelessWidget {
   const PdfDeclareDrawer({Key? key}) : super(key: key);
 
@@ -64,7 +66,12 @@ class PdfDeclareDrawer extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: ElevatedButton(
-                onPressed: null,
+                onPressed: () {
+                  updateMainDeclarer(
+                    context,
+                    c.currentDeclare,
+                  );
+                },
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [

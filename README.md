@@ -20,6 +20,14 @@
 5. [x] 使用 **TabBar** 來顯示這三種類型，由 **Drawer** 來操控個別類型
 
 # 進度
+
+## [2021-10-08] 完成下面的任務(mainDeclarer 的 Dialog的顯現與操控)了
+目前，先在外面創生出`pkg_update_main_declarer` 的 package 來產生 Dialog，並且移植回來了。
+接下來，要產生各個圖表的小Card與他們的 Dialog 了，看來，又要在外面創生了。這樣比較容易執行與維護。
+
+## [2021-10-04] 試著使用Form來調整 mainDeclarer 的值
+在 [此篇Stack Overflow](https://stackoverflow.com/questions/64544571/flutter-getx-forms-validation) 有些例子可以參考。
+
 ## [2021-10-03] 可以得到PDF圖表了
 ## [2021-09-27] 初步印出頁面的標頭了
 ## [2021-09-24] packages 的問題

@@ -45,7 +45,10 @@ Future<Uint8List> genPdfDoc(PdfPageFormat format, PdfViewController ctrler,
   final currentDeclare = ctrler.currentDeclare.value;
   final mainIndType = currentDeclare.indType;
   final List<dynamic> mainInds =
-      getInds(indType: mainIndType, viewInds: ctrler.main, n: currentDeclare.n);
+      getInds(
+      indType: mainIndType,
+      viewInds: ctrler.main,
+      nStSelN: currentDeclare.nStSelN);
 
   for (var mainInd in mainInds) {
   doc.addPage(

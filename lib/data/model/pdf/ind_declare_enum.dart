@@ -1,1 +1,1 @@
-enum IndDeclarerEnum { all, firstN, asTableView, custom }
+enum IndDeclarerEnum { all, selN, asTableView, custom }

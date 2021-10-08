@@ -1,5 +1,5 @@
 import 'gen_pdf/gen_pdf_doc.dart';
-import 'package:class_grades_analyzer/modules/pdf_view/pdf_declare_drawer.dart';
+import 'drawer/pdf_declare_drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

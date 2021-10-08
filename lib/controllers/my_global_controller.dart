@@ -51,7 +51,7 @@ class MyGlobalController extends GetxController {
           ..children = [
             OnePdfDeclarerModel()
               ..type = PdfItemTypeEnum.tbl_chart
-              ..ny = 2
+              ..ny = [1, 2]
           ]
           ..indType = IndDeclarerEnum.all)
         .obs,

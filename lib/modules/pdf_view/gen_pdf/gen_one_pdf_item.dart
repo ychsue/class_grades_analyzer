@@ -2,10 +2,7 @@ import 'package:class_grades_analyzer/data/model/dimensions/tab_names.dart';
 import 'package:class_grades_analyzer/data/model/grade_or_rank.dart';
 import 'package:class_grades_analyzer/data/model/pdf/one_pdf_declarer.dart';
 import 'package:class_grades_analyzer/data/model/pdf/pdf_item_type.dart';
-import 'package:class_grades_analyzer/modules/dims/dims_controller.dart';
 import 'package:class_grades_analyzer/modules/pdf_view/gen_pdf/functions/get_inds.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/rendering.dart';
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
 
@@ -48,9 +45,13 @@ pw.Widget genOnePdfItem(PdfPageFormat format, PdfViewController ctrler,
 
   final exams = ctrler.gC.exams.value;
   final xInds = getInds(
-      indType: itemDeclarer.xType, viewInds: ctrler.x, n: itemDeclarer.nx);
+      indType: itemDeclarer.xType,
+      viewInds: ctrler.x,
+      nStSelN: itemDeclarer.nx);
   final yInds = getInds(
-      indType: itemDeclarer.yType, viewInds: ctrler.y, n: itemDeclarer.ny);
+      indType: itemDeclarer.yType,
+      viewInds: ctrler.y,
+      nStSelN: itemDeclarer.ny);
   final gType = itemDeclarer.gType;
   final List<List<dynamic>> data = [];
 
