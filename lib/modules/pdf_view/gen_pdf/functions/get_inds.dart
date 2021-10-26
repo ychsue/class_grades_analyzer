@@ -18,6 +18,7 @@ List<dynamic> getInds({
     case IndDeclarerEnum.selN:
       inds = [];
       for (var iN in nStSelN) {
+        if (iN > viewInds.length) break;
         inds.add(viewInds[iN - 1].t1);
       }
       break;
