@@ -60,9 +60,12 @@ Future<Uint8List> genPdfDoc(PdfPageFormat format, PdfViewController ctrler,
           pw.Center(
               child: pw.Text(FunForOnePdfDeclarer.genStringFromExpression(
                   input: mainInd, expression: currentDeclare.headerScript))),
-          pw.Expanded(
-            child: genOnePdfItem(format, ctrler, mainInd,
-                ctrler.currentDeclare.value.children[0]),
+          ...List.generate(
+            ctrler.currentDeclare.value.children.length,
+            (ind) => pw.Expanded(
+              child: genOnePdfItem(format, ctrler, mainInd,
+                    ctrler.currentDeclare.value.children[ind]),
+            ),
           ),
         ]),
       ),

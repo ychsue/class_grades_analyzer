@@ -21,6 +21,9 @@
 
 # 進度
 
+## [2021-11-01] 可以自由設定 declarer 了
+主軸與XY軸皆可了。
+
 ## [2021-10-08] 完成下面的任務(mainDeclarer 的 Dialog的顯現與操控)了
 目前，先在外面創生出`pkg_update_main_declarer` 的 package 來產生 Dialog，並且移植回來了。
 接下來，要產生各個圖表的小Card與他們的 Dialog 了，看來，又要在外面創生了。這樣比較容易執行與維護。

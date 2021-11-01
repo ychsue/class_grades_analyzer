@@ -63,7 +63,12 @@ List<num> getYGrid(List<List> data, int nGrid) {
     }
   }
 
-  if (imax == -MAX) return result;
+  if (imax == -MAX) {
+    imax = 0;
+    imin = 0;
+    //return result; // by this one, it cannot plot
+  }
+
   final dValue = (imax - imin) / (nGrid - 1);
   // 2. get the grid
   for (var i = 0; i < nGrid; i++) {

@@ -6,8 +6,10 @@ export 'fun_for_one_pdf_declarer.dart';
 class OnePdfDeclarerModel {
   bool exchangeXY = false;
   IndDeclarerEnum xType = IndDeclarerEnum.asTableView;
+  String stSelX = "1";
   List<int> nx = [1];
   IndDeclarerEnum yType = IndDeclarerEnum.selN;
+  String stSelY = "1";
   List<int> ny = [1];
 
   PdfItemTypeEnum type = PdfItemTypeEnum.table;
@@ -15,6 +17,19 @@ class OnePdfDeclarerModel {
   GradeOrRankEnum gType = GradeOrRankEnum.grade;
 
   OnePdfDeclarerModel();
+
+  OnePdfDeclarerModel of(OnePdfDeclarerModel input) {
+    return OnePdfDeclarerModel()
+      ..exchangeXY = this.exchangeXY
+      ..xType = this.xType
+      ..stSelX = this.stSelX
+      ..nx = this.nx
+      ..yType = this.yType
+      ..stSelY = this.stSelY
+      ..ny = this.ny
+      ..type = this.type
+      ..gType = this.gType;
+  }
 
   OnePdfDeclarerModel.fromJson(Map<String, dynamic> json) {
     this.exchangeXY = json['exchangeXY'];
