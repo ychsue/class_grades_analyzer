@@ -1,3 +1,5 @@
+import 'package:pdf/pdf.dart';
+
 import 'gen_pdf/gen_pdf_doc.dart';
 import 'drawer/pdf_declare_drawer.dart';
 import 'package:flutter/material.dart';
@@ -32,6 +34,7 @@ class PdfViewPage extends GetView<PdfViewController> {
       body: Obx(() {
         final isOkay2Draw = controller.isOkay2Draw.value;
         return PdfPreview(
+          initialPageFormat: PdfPageFormat.a4,
             build: (format) => genPdfDoc(format, controller, isOkay2Draw));
       }),
     );

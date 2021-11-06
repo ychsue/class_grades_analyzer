@@ -17,6 +17,9 @@ class PdfDeclareDrawer extends StatelessWidget {
     final gC = c.gC;
     final axes = gC.cases.firstWhere((ele) => ele.value.main == gC.tab.value);
     final List<OnePdfDeclarerModel> modifieditems = [];
+    final nPerPage = 0.obs;
+    nPerPage.value =
+        c.currentDeclare.value.nPerPage; // Just used for asking for rerendering
     return Drawer(
       child: Column(
         mainAxisSize: MainAxisSize.min,
@@ -90,25 +93,42 @@ class PdfDeclareDrawer extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              ElevatedButton(
-                  onPressed: () {
-                    if (modifieditems.length != 0) {
-                      // if something has been modified
-                      c.currentDeclare.value.children.clear();
-                      c.currentDeclare.value.children.addAll(modifieditems);
-                    }
-                    if (c.isOkay2Draw.value == true) {
-                      c.isOkay2Draw.refresh();
-                    } else {
-                      c.isOkay2Draw.value = true;
-                    }
-
-                    modifieditems.clear();
+              Obx(
+                () => DropdownButton<int>(
+                  value: nPerPage.value,
+                  items: [1, 2, 3, 4]
+                      .map((e) => DropdownMenuItem(
+                            child: Text("$e"),
+                            value: e,
+                          ))
+                      .toList(),
+                  onChanged: (v) {
+                    nPerPage.value = v ?? 1;
+                    c.currentDeclare.value.nPerPage = nPerPage.value;
                   },
-                  style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all(Colors.red),
-                  ),
-                  child: Text("開始製作PDF")), //I18N
+                ),
+              ),
+
+              ElevatedButton(
+                onPressed: () {
+                  if (modifieditems.length != 0) {
+                    // if something has been modified
+                    c.currentDeclare.value.children.clear();
+                    c.currentDeclare.value.children.addAll(modifieditems);
+                  }
+                  if (c.isOkay2Draw.value == true) {
+                    c.isOkay2Draw.refresh();
+                  } else {
+                    c.isOkay2Draw.value = true;
+                  }
+
+                  modifieditems.clear();
+                },
+                style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all(Colors.red),
+                ),
+                child: Text("開始製作PDF"),
+              ), //I18N
             ],
           ),
           Divider(),

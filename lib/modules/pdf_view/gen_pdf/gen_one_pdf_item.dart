@@ -78,9 +78,16 @@ pw.Widget genOnePdfItem(PdfPageFormat format, PdfViewController ctrler,
   if (itemDeclarer.type == PdfItemTypeEnum.table ||
       itemDeclarer.type == PdfItemTypeEnum.tbl_chart) {
     theItem = makePdfTable(xFor, tableXinds, yFor, tableYinds, data);
-    children.add(pw.Expanded(
-      child: theItem,
-    ));
+    children.add(
+      pw.Expanded(
+        child: pw.Padding(
+            padding: pw.EdgeInsets.all(8),
+            child: pw.Align(
+              alignment: pw.Alignment.topCenter,
+              child: theItem,
+          )),
+      ),
+    );
   }
 
   // 3. Draw chart
@@ -88,11 +95,13 @@ pw.Widget genOnePdfItem(PdfPageFormat format, PdfViewController ctrler,
       itemDeclarer.type == PdfItemTypeEnum.tbl_chart) {
     theItem = makePdfChart(xFor, tableXinds, yFor, tableYinds, data);
     children.add(pw.Expanded(
-      child: theItem,
+      child: pw.Padding(
+        padding: pw.EdgeInsets.all(8),
+        child: theItem,
+      ),
     ));
   }
 
-  children.add(pw.Text("${ctrler.currentDeclare.value.bottomScript}"));
   pw.Widget result = pw.Column(children: children);
   return result;
 }

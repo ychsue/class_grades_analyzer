@@ -1,5 +1,6 @@
 import 'dart:typed_data';
 import 'package:class_grades_analyzer/data/model/dimensions/tab_names.dart';
+import 'package:class_grades_analyzer/data/model/pdf/main_pdf_declarer.dart';
 import 'package:class_grades_analyzer/data/model/pdf/one_pdf_declarer.dart';
 import 'package:class_grades_analyzer/modules/pdf_view/gen_pdf/gen_one_pdf_item.dart';
 import 'functions/get_inds.dart';
@@ -44,33 +45,73 @@ Future<Uint8List> genPdfDoc(PdfPageFormat format, PdfViewController ctrler,
   // * 1. Get main Inds
   final currentDeclare = ctrler.currentDeclare.value;
   final mainIndType = currentDeclare.indType;
-  final List<dynamic> mainInds =
-      getInds(
+  final List<dynamic> mainInds = getInds(
       indType: mainIndType,
       viewInds: ctrler.main,
       nStSelN: currentDeclare.nStSelN);
 
-  for (var mainInd in mainInds) {
-  doc.addPage(
-      pw.Page(
-        pageFormat: format,
-        theme: theme,
-        build: (ctx) => pw.Column(children: [
-          // headerr
-          pw.Center(
-              child: pw.Text(FunForOnePdfDeclarer.genStringFromExpression(
-                  input: mainInd, expression: currentDeclare.headerScript))),
-          ...List.generate(
-            ctrler.currentDeclare.value.children.length,
-            (ind) => pw.Expanded(
-              child: genOnePdfItem(format, ctrler, mainInd,
-                    ctrler.currentDeclare.value.children[ind]),
-            ),
-          ),
-        ]),
+  final nPerPage = currentDeclare.nPerPage;
+  List<pw.Widget> buf = [];
+  Function addIntoPage = (List<pw.Widget> buf) {
+    final buf1 = List.of(
+        buf); // This line is necessary, or it will always output an empty one
+    doc.addPage(pw.Page(
+      pageFormat: format,
+      theme: theme,
+      build: (ctx) => pw.Column(
+        children: [...buf1],
       ),
-    );    
+    ));
+    buf.clear();
+  };
+  for (var i = 0; i < mainInds.length; i++) {
+    final mainInd = mainInds[i];
+    final ind = i + 1;
+    buf.add(
+      pw.Expanded(
+        child: pw.Padding(
+          padding: pw.EdgeInsets.all(8),
+          child: pw.Column(
+            children:
+                genAMainPDFBundle(mainInd, currentDeclare, ctrler, format),
+          ),
+        ),
+      ),
+    );
+    if (ind % nPerPage == 0) {
+      addIntoPage(buf);
+    }
+  }
+  if (buf.length != 0) {
+    addIntoPage(buf);
   }
 
   return doc.save();
+}
+
+/// generate a list of PDFWidget items for each main declarer
+///
+List<pw.Widget> genAMainPDFBundle(
+    dynamic mainInd,
+    MainPdfDeclarerModel currentDeclare,
+    PdfViewController ctrler,
+    PdfPageFormat format) {
+  return [
+    // headerr
+    pw.Center(
+      child: pw.Text(
+        FunForOnePdfDeclarer.genStringFromExpression(
+            input: mainInd, expression: currentDeclare.headerScript),
+        style: pw.TextStyle(fontSize: 14),
+      ),
+    ),
+    ...List.generate(
+      ctrler.currentDeclare.value.children.length,
+      (ind) => pw.Expanded(
+        child: genOnePdfItem(
+            format, ctrler, mainInd, ctrler.currentDeclare.value.children[ind]),
+      ),
+    ),
+    pw.Text("${ctrler.currentDeclare.value.bottomScript}"),
+  ];
 }

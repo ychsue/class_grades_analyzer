@@ -5,6 +5,8 @@ import 'package:class_grades_analyzer/data/model/pdf/one_pdf_declarer.dart';
 class MainPdfDeclarerModel {
   late TabsEnum main;
 
+  int nPerPage = 1;
+
   String headerScript = "\$0"; //$0 means all,
   String bottomScript = "家長簽名："; //I18N
 
