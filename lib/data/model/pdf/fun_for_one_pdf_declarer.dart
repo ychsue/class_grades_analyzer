@@ -9,7 +9,8 @@ extension FunForOnePdfDeclarer on OnePdfDeclarerModel {
     if (expression == "") return result;
 
     List<String> inList = [];
-    if (input.runtimeType.toString() == "_JsonMap") {
+    final iType = input.runtimeType.toString();
+    if (iType == "_JsonMap" || iType.contains("Map")) {
       inList.add(jsonEncode(input));
       final allEle = List<String>.from(input.values.map((e) => e.toString()));
       inList.addAll(allEle);

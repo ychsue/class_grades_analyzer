@@ -1,4 +1,5 @@
 import 'package:class_grades_analyzer/data/model/one_exam_row_model.dart';
+import 'package:class_grades_analyzer/data/model/one_record_model.dart';
 import 'package:flutter/foundation.dart';
 
 class OneExamModel {
@@ -8,7 +9,16 @@ class OneExamModel {
   OneExamModel({required this.name, required this.students});
 
   OneExamRowModel getStudent(Map<String, dynamic> id) {
-    return students.firstWhere((ele) => mapEquals(id, ele.id));
+    late OneExamRowModel student;
+    try {
+      student = students.firstWhere((ele) => mapEquals(id, ele.id));
+    } catch (e) {
+      // Sometimes, there might be some new students to get into the teacher's class
+      var courses = students[0].courses;
+      courses = courses.map((key, value) => MapEntry(key, OneRecordModel()));
+      student = OneExamRowModel(id: id, courses: courses);
+    }
+    return student;
   }
 
   add(OneExamRowModel student) {

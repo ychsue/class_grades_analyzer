@@ -50,14 +50,16 @@ class SIFMController extends GetxController {
     final List<pkg.PIDData> result = [];
     for (int i0 = 0; i0 < codeChildren.length; i0++) {
       final item = codeChildren[i0];
+      item.nx = pkg.selN2List(item.stSelX);
+      item.ny = pkg.selN2List(item.stSelY);
       result.add(pkg.PIDData()
         ..exchangeXY = item.exchangeXY
         ..xType = c2pXYType(item.xType)
         ..yType = c2pXYType(item.yType)
         ..stSelX = item.stSelX
-        ..nx = pkg.selN2List(item.stSelX)
+        ..nx = item.nx
         ..stSelY = item.stSelY
-        ..ny = pkg.selN2List(item.stSelY)
+        ..ny = item.ny
         ..type = c2pType(item.type)
         ..gType = c2pGType(item.gType)
         ..callback = setCallback(i0));

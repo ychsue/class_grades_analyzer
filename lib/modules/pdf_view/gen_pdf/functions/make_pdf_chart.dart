@@ -4,9 +4,10 @@ import 'package:class_grades_analyzer/data/model/dimensions/tab_names.dart';
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
 
-pw.Chart makePdfChart(TabsEnum xFor, List<dynamic> xInds, TabsEnum yFor,
+pw.Widget makePdfChart(TabsEnum xFor, List<dynamic> xInds, TabsEnum yFor,
     List<dynamic> yInds, List<List<dynamic>> data) {
   final List<num> yGrid = getYGrid(data, 4);
+  if (yGrid.length == 0) return pw.Container();
 
   final result = pw.Chart(
       right: pw.ChartLegend(),
@@ -64,9 +65,7 @@ List<num> getYGrid(List<List> data, int nGrid) {
   }
 
   if (imax == -MAX) {
-    imax = 0;
-    imin = 0;
-    //return result; // by this one, it cannot plot
+    return result; // by this one, it cannot plot
   }
 
   final dValue = (imax - imin) / (nGrid - 1);

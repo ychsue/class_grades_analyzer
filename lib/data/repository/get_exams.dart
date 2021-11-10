@@ -14,7 +14,8 @@ class GetExamsRepository {
 
   Future<ExamsModel> getExamsAsync() async {
     late ExamsModel exams;
-    if (kDebugMode) {
+    // if (kDebugMode) {
+    if (false) {
       var json = JsonDecoder()
           .convert(await rootBundle.loadString("assets/exams.json"));
       exams = ExamsModel.fromJson(json);
