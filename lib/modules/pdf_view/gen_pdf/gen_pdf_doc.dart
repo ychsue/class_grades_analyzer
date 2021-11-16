@@ -112,6 +112,11 @@ List<pw.Widget> genAMainPDFBundle(
             format, ctrler, mainInd, ctrler.currentDeclare.value.children[ind]),
       ),
     ),
-    pw.Text("${ctrler.currentDeclare.value.bottomScript}"),
+    pw.Container(
+      alignment: pw.Alignment.bottomLeft,
+      margin: pw.EdgeInsets.all(12),
+      child: pw.Text("${ctrler.currentDeclare.value.bottomScript}"),
+    ),
+    
   ];
 }

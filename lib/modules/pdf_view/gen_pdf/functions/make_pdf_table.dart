@@ -1,6 +1,8 @@
-import 'package:class_grades_analyzer/data/model/dimensions/tab_names.dart';
+import 'package:class_grades_analyzer/utils/num2String.dart';
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
+
+import 'package:class_grades_analyzer/data/model/dimensions/tab_names.dart';
 
 pw.Table makePdfTable(TabsEnum xFor, List<dynamic> xInds, TabsEnum yFor,
     List<dynamic> yInds, List<List<dynamic>> data) {
@@ -27,7 +29,7 @@ pw.Table makePdfTable(TabsEnum xFor, List<dynamic> xInds, TabsEnum yFor,
           ? [for (var v in (yInds[i] as Map).values) CeilText("$v")]
           : [CeilText("${yInd.toString()}")]),
       // pw.Text("${yInd.toString()}"), // 測試中
-      ...data[i].map((e) => CeilText("${e.toString()}")),
+      ...data[i].map((e) => CeilText("${num2String(e)}")),
     ]);
     children.add(aRow);
   }

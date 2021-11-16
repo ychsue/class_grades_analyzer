@@ -1,5 +1,6 @@
 import 'package:class_grades_analyzer/data/model/dimensions/tab_names.dart';
 import 'package:class_grades_analyzer/data/model/grade_or_rank.dart';
+import 'package:class_grades_analyzer/data/model/one_exam_model.dart';
 import 'package:class_grades_analyzer/data/model/pdf/one_pdf_declarer.dart';
 import 'package:class_grades_analyzer/data/model/pdf/pdf_item_type.dart';
 import 'package:class_grades_analyzer/modules/pdf_view/gen_pdf/functions/get_inds.dart';
@@ -17,8 +18,8 @@ pw.Widget genOnePdfItem(PdfPageFormat format, PdfViewController ctrler,
   // * 1. Get data
   // #region 1.1 For Inds
   final axes = ctrler.axes.value;
-  final xFor = axes.x;
-  final yFor = axes.y;
+  final xFor = (itemDeclarer.exchangeXY) ? axes.y : axes.x;
+  final yFor = (itemDeclarer.exchangeXY) ? axes.x : axes.y;
   final mainFor = axes.main;
 
   String examInd = "";
@@ -60,10 +61,10 @@ pw.Widget genOnePdfItem(PdfPageFormat format, PdfViewController ctrler,
 
   feedIndices(mainFor, mainInd);
   for (var yInd in tableYinds) {
-    feedIndices((itemDeclarer.exchangeXY) ? xFor : yFor, yInd);
+    feedIndices(yFor, yInd);
     final aRow = [];
     for (var xInd in tableXinds) {
-      feedIndices((itemDeclarer.exchangeXY) ? yFor : xFor, xInd);
+      feedIndices(xFor, xInd);
       final grade =
           exams?.getExam(examInd).getStudent(studentInd).getCourse(courseInd);
       aRow.add((gType == GradeOrRankEnum.grade)
@@ -71,6 +72,36 @@ pw.Widget genOnePdfItem(PdfPageFormat format, PdfViewController ctrler,
           : ((gType == GradeOrRankEnum.rank) ? grade?.rank : null));
     }
     data.add(aRow);
+  }
+
+  // TODO For showing the highest, lowest and average for each student
+  if (mainFor == TabsEnum.student) {
+    if (yInds.length == 1) {
+      final highestRow = <num?>[];
+      final lowestRow = <num?>[];
+      final averageRow = <num?>[];
+      for (var xInd in tableXinds) {
+        feedIndices(xFor, xInd);
+        final highest = exams
+            ?.getExam(examInd)
+            .getStudent({VStudentKeys.highest: null}).getCourse(courseInd);
+        final lowest = exams
+            ?.getExam(examInd)
+            .getStudent({VStudentKeys.lowest: null}).getCourse(courseInd);
+        final average = exams
+            ?.getExam(examInd)
+            .getStudent({VStudentKeys.average: null}).getCourse(courseInd);
+        highestRow.add(highest?.numb);
+        lowestRow.add(lowest?.numb);
+        averageRow.add(average?.numb);
+      }
+      data.add(highestRow);
+      yInds.add(VStudentKeys.highest);
+      data.add(lowestRow);
+      yInds.add(VStudentKeys.lowest);
+      data.add(averageRow);
+      yInds.add(VStudentKeys.average);
+    }
   }
 
   // 2. Draw table
@@ -85,7 +116,7 @@ pw.Widget genOnePdfItem(PdfPageFormat format, PdfViewController ctrler,
             child: pw.Align(
               alignment: pw.Alignment.topCenter,
               child: theItem,
-          )),
+            )),
       ),
     );
   }

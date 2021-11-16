@@ -5,7 +5,9 @@ import 'package:class_grades_analyzer/data/model/exams_model.dart';
 import 'package:get/get.dart';
 import 'package:rxdart/rxdart.dart';
 import 'exams/update_global_axes.dart';
+import 'exams/update_virtual_student.dart';
 export 'exams/update_global_axes.dart';
+export 'exams/update_virtual_student.dart';
 
 class ExamsController extends GetxController {
   /// IO [exams]
@@ -18,6 +20,7 @@ class ExamsController extends GetxController {
   void onInit() {
     exams.stream.takeUntil(_unsubscribed.stream).listen((exams) {
       updateAxesIndices(exams);
+      updateVirtualStudent(exams);
       gC.exams.value = exams;
     });
     super.onInit();
