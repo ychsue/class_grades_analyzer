@@ -2,6 +2,7 @@ import 'package:class_grades_analyzer/data/model/dimensions/dim_ind_types.dart';
 import 'package:class_grades_analyzer/data/model/dimensions/each_case_model.dart';
 import 'package:class_grades_analyzer/data/model/dimensions/tab_names.dart';
 import 'package:class_grades_analyzer/data/model/pair.dart';
+import 'package:class_grades_analyzer/utils/num2String.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -149,7 +150,7 @@ class ShowTables extends StatelessWidget {
     } else {
       grades.add(ys[iy].t1.toString());
     }
-    grades.addAll(data[iMain][iy].map((e) => e.toString()));
+    grades.addAll(data[iMain][iy].map((e) => num2String(e)));
 
     cells.addAll(grades
         .map((e) => DataCell(
