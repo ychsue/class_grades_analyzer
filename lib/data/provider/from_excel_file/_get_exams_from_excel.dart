@@ -17,6 +17,8 @@ getExamsFromExcel({
 
   for (var examName in examNames) {
     Sheet? sheet = excel.tables[examName];
+    if (c.ignoredSheets.contains(examName)) continue;
+    
     OneExamModel exam = getOneExamFromSheet(examName, sheet);
     if (exam.students.length == 0) continue;
     result.exams.add(exam);

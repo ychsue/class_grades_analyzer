@@ -27,6 +27,7 @@ OneExamModel getOneExamFromSheet(
   // 3. Get students' data
   for (var i = (_maxHeadRow + 1); i < sheet.rows.length; i++) {
     var row = sheet.rows[i];
+    if (row.contains(c.endRow.value)) break;
     var student = getOneStudent(icKeys, row);
     if (student != null) result.students.add(student);
   }
