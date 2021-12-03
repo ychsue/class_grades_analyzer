@@ -24,41 +24,63 @@ class MyDrawer extends StatelessWidget {
             ),
           ),
           Divider(),
-          ListTile(
-            title: Text('主軸：' + TabNames.name(axes.value.main)), // I18N
-            leading: MyGlobalController.Tabs[TabNames.name(axes.value.main)],
-            onTap: () {
-              showDialog(
-                  context: context,
-                  builder: (ctx) {
-                    return SetVisibilityDialog(
-                        axes: axes, whichAxis: axes.value.main, gC: gC);
-                  });
-            },
+          Container(
+            margin: EdgeInsets.all(8),
+            child: Material(
+              elevation: 8,
+              borderRadius: BorderRadius.all(Radius.circular(45)),
+              child: ListTile(
+                title: Text('主軸：' + TabNames.name(axes.value.main)), // I18N
+                leading:
+                    MyGlobalController.Tabs[TabNames.name(axes.value.main)],
+                onTap: () {
+                  showDialog(
+                      context: context,
+                      builder: (ctx) {
+                        return SetVisibilityDialog(
+                            axes: axes, whichAxis: axes.value.main, gC: gC);
+                      });
+                },
+              ),
+            ),
           ),
-          ListTile(
-            title: Text('X軸：' + TabNames.name(axes.value.x)), // I18N
-            leading: MyGlobalController.Tabs[TabNames.name(axes.value.x)],
-            onTap: () {
-              showDialog(
-                  context: context,
-                  builder: (ctx) {
-                    return SetVisibilityDialog(
-                        axes: axes, whichAxis: axes.value.x, gC: gC);
-                  });
-            },
+          Container(
+            margin: EdgeInsets.all(8),
+            child: Material(
+              elevation: 8,
+              borderRadius: BorderRadius.all(Radius.circular(45)),
+              child: ListTile(
+                title: Text('X軸：' + TabNames.name(axes.value.x)), // I18N
+                leading: MyGlobalController.Tabs[TabNames.name(axes.value.x)],
+                onTap: () {
+                  showDialog(
+                      context: context,
+                      builder: (ctx) {
+                        return SetVisibilityDialog(
+                            axes: axes, whichAxis: axes.value.x, gC: gC);
+                      });
+                },
+              ),
+            ),
           ),
-          ListTile(
-            title: Text('Y軸：' + TabNames.name(axes.value.y)), // I18N
-            leading: MyGlobalController.Tabs[TabNames.name(axes.value.y)],
-            onTap: () {
-              showDialog(
-                  context: context,
-                  builder: (ctx) {
-                    return SetVisibilityDialog(
-                        axes: axes, whichAxis: axes.value.y, gC: gC);
-                  });
-            },
+          Container(
+            margin: EdgeInsets.all(8),
+            child: Material(
+              elevation: 8,
+              borderRadius: BorderRadius.all(Radius.circular(45)),
+              child: ListTile(
+                title: Text('Y軸：' + TabNames.name(axes.value.y)), // I18N
+                leading: MyGlobalController.Tabs[TabNames.name(axes.value.y)],
+                onTap: () {
+                  showDialog(
+                      context: context,
+                      builder: (ctx) {
+                        return SetVisibilityDialog(
+                            axes: axes, whichAxis: axes.value.y, gC: gC);
+                      });
+                },
+              ),
+            ),
           ),
           Divider(),
           Center(
@@ -93,11 +115,18 @@ class MyDrawer extends StatelessWidget {
             ),
           ),
           Divider(),
-          IconButton(
-            onPressed: () {
-              Get.toNamed(Routes.PDFVIEW);
-            },
-            icon: Icon(Icons.picture_as_pdf),
+          Container(
+            margin: EdgeInsets.all(8),
+            child: Material(
+              elevation: 8,
+              borderRadius: BorderRadius.all(Radius.circular(45)),
+              child: IconButton(
+                onPressed: () {
+                  Get.toNamed(Routes.PDFVIEW);
+                },
+                icon: Icon(Icons.picture_as_pdf),
+              ),
+            ),
           ), // TODO
         ],
       ),
