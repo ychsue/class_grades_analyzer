@@ -22,9 +22,9 @@ class EachCaseModel extends DimsIndTypes<TabsEnum> {
   }
 
   fromJson(Map<String, dynamic> json) {
-    this.main = json['main'];
-    this.x = json['x'];
-    this.y = json['y'];
+    this.main = TabNames.tab(json['main']);
+    this.x = TabNames.tab(json['x']);
+    this.y = TabNames.tab(json['y']);
     this.sortIndices = DimsModel.fromJson(json['sortIndices']);
     // this.visibleIndices = DimsModel.fromJson(json['visibleIndices']);
   }
@@ -52,10 +52,10 @@ class EachCaseModel extends DimsIndTypes<TabsEnum> {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = Map<String, dynamic>();
-    data['main'] = this.main;
-    data['x'] = this.x;
-    data['y'] = this.y;
-    data['sortIndices'] = this.sortIndices;
+    data['main'] = TabNames.name(this.main);
+    data['x'] = TabNames.name(this.x);
+    data['y'] = TabNames.name(this.y);
+    data['sortIndices'] = this.sortIndices.toJson();
     // data['visibleIndices'] = this.visibleIndices;
 
     return data;

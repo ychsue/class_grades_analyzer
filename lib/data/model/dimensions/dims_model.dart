@@ -10,7 +10,7 @@ class DimsModel {
 
   DimsModel();
 
-  DimsModel.fromJson(Map<String, dynamic> json) {
+  DimsModel.fromJson(dynamic json) {
     this.fromJson(json);
   }
 
@@ -31,17 +31,31 @@ class DimsModel {
     }
   }
 
-  fromJson(Map<String, dynamic> json) {
-    this.exam = List<PairModel<String, bool>>.from(json['exam']);
-    this.course = List<PairModel<String, bool>>.from(json['course']);
-    this.student = json['student'];
+  fromJson(dynamic jsonIn) {
+    final iType = jsonIn.runtimeType.toString();
+    late Map<String, List<dynamic>> json;
+    if (iType == "_JsonMap" || iType.contains("Map")) {
+      json = Map<String, List<dynamic>>.from(jsonIn);
+    } else {
+      return {};
+    }
+    this.exam = List<PairModel<String, bool>>.from(
+      json['exam']!.map((e) => PairModel<String, bool>.fromJson(e)),
+    );
+    this.course = List<PairModel<String, bool>>.from(
+      json['course']!.map((e) => PairModel<String, bool>.fromJson(e)),
+    );
+    this.student = List<PairModel<Map<String, dynamic>, bool>>.from(
+      json['student']!
+          .map((e) => PairModel<Map<String, dynamic>, bool>.fromJson(e)),
+    );
   }
 
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['exam'] = this.exam;
-    data['course'] = this.course;
-    data['student'] = this.student;
+  Map<String, List<dynamic>> toJson() {
+    final Map<String, List<dynamic>> data = new Map<String, List<dynamic>>();
+    data['exam'] = this.exam.map((e) => e.toJson()).toList();
+    data['course'] = this.course.map((e) => e.toJson()).toList();
+    data['student'] = this.student.map((e) => e.toJson()).toList();
 
     return data;
   }

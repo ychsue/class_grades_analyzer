@@ -16,20 +16,9 @@ class ShowTables extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      scrollDirection: Axis.horizontal,
-      child: SingleChildScrollView(
-        scrollDirection: Axis.vertical,
-        child: Obx(() => LimitedBox(
-              maxWidth: (MediaQuery.of(context).size.width > inds.x.length * 80)
-                  ? MediaQuery.of(context).size.width
-                  : inds.x.length * 80,
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: getTables(),
-              ),
-            )),
+    return Obx(
+      () => ListView(
+        children: getTables(),
       ),
     );
   }
@@ -38,7 +27,7 @@ class ShowTables extends StatelessWidget {
     List<Widget> result = [];
     if (inds.main.length == 0 || inds.x.length == 0 || inds.y.length == 0)
       return [];
-      
+
     for (var iMain = 0; iMain < inds.main.length; iMain++) {
       final List<Widget> aTable = [];
       aTable.add(
@@ -65,6 +54,7 @@ class ShowTables extends StatelessWidget {
         decoration: BoxDecoration(
             border: Border.all(), borderRadius: BorderRadius.circular(8.0)),
         child: Column(
+          mainAxisSize: MainAxisSize.min,
           children: aTable,
         ),
       ));
@@ -109,6 +99,7 @@ class ShowTables extends StatelessWidget {
               label: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisSize: MainAxisSize.min,
                 children: [for (var key in students[0].t1.keys) Text(key)],
               ),
             ),
@@ -144,6 +135,7 @@ class ShowTables extends StatelessWidget {
         Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisSize: MainAxisSize.min,
           children: [for (var item in ys[iy].t1.values) Text(item.toString())],
         ),
       ));
@@ -181,3 +173,4 @@ class ShowTables extends StatelessWidget {
     return Colors.transparent;
   }
 }
+

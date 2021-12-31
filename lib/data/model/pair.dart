@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 class PairModel<T1, T2> {
   late T1 t1;
   late T2 t2;
@@ -12,14 +14,14 @@ class PairModel<T1, T2> {
   }
 
   PairModel.fromJson(Map<String, dynamic> json) {
-    this.t1 = json['t1'];
-    this.t2 = json['t2'];
+    this.t1 = jsonDecode(json['t1']);
+    this.t2 = jsonDecode(json['t2']);
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['t1'] = this.t1;
-    data['t2'] = this.t2;
+    data['t1'] = jsonEncode(this.t1);
+    data['t2'] = jsonEncode(this.t2);
     return data;
   }
 }
