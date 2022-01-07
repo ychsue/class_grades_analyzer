@@ -7,6 +7,7 @@ import 'package:class_grades_analyzer/data/model/pdf/ind_declare_enum.dart';
 import 'package:class_grades_analyzer/data/model/pdf/main_pdf_declarer.dart';
 import 'package:class_grades_analyzer/data/model/pdf/one_pdf_declarer.dart';
 import 'package:class_grades_analyzer/data/model/pdf/pdf_item_type.dart';
+import 'package:class_grades_analyzer/data/provider/for_pdf_declarer.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pdf/widgets.dart' as pw;
@@ -40,25 +41,40 @@ class MyGlobalController extends GetxController {
       .obs; //If you want to set it, provide a new one.
 
   // For PDF
-  final List<Rx<MainPdfDeclarerModel>> allMainPdfDeclares =
-      <Rx<MainPdfDeclarerModel>>[
-    (MainPdfDeclarerModel(main: TabsEnum.exam)
-          ..headerScript = "\$1班 第\$2學期 第\$3次月考"
-          ..children = [OnePdfDeclarerModel()..yType = IndDeclarerEnum.all])
-        .obs, //I18N
-    (MainPdfDeclarerModel(main: TabsEnum.student)
-          ..headerScript = "座號：\$1，姓名：\$2"
-          ..children = [
-            OnePdfDeclarerModel()
-              ..type = PdfItemTypeEnum.tbl_chart
-              ..stSelY = "1~2"
-              ..ny = [1, 2]
-          ]
-          ..indType = IndDeclarerEnum.all)
-        .obs,
-    (MainPdfDeclarerModel(main: TabsEnum.course)
-          ..indType = IndDeclarerEnum.all
-          ..children = [OnePdfDeclarerModel()..yType = IndDeclarerEnum.all])
-        .obs,
-  ];
+  late List<Rx<MainPdfDeclarerModel>> allMainPdfDeclares;
+
+  @override
+  void onInit() {
+    super.onInit();
+
+    // initialize 3 MainPdfDeclarers
+    allMainPdfDeclares = <Rx<MainPdfDeclarerModel>>[
+      (MainPdfDeclarerModel(main: TabsEnum.exam)
+            ..headerScript = "\$1班 第\$2學期 第\$3次月考"
+            ..children = [OnePdfDeclarerModel()..yType = IndDeclarerEnum.all])
+          .obs, //I18N
+      (MainPdfDeclarerModel(main: TabsEnum.student)
+            ..headerScript = "座號：\$1，姓名：\$2"
+            ..children = [
+              OnePdfDeclarerModel()
+                ..type = PdfItemTypeEnum.tbl_chart
+                ..stSelY = "1~2"
+                ..ny = [1, 2]
+            ]
+            ..indType = IndDeclarerEnum.all)
+          .obs,
+      (MainPdfDeclarerModel(main: TabsEnum.course)
+            ..indType = IndDeclarerEnum.all
+            ..children = [OnePdfDeclarerModel()..yType = IndDeclarerEnum.all])
+          .obs,
+    ];
+    // update it if possible
+    ForPDFDeclarer.load().then((loadData) {
+      if (loadData != null)
+        allMainPdfDeclares.forEach((ele1) {
+          ele1.value =
+              loadData.firstWhere((ele2) => ele2.main == ele1.value.main);
+        });
+    });
+  }
 }

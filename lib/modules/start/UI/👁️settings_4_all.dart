@@ -1,5 +1,6 @@
-import 'package:class_grades_analyzer/controllers/global_var/io_show_cases.dart';
 import 'package:class_grades_analyzer/controllers/id_and_course_keys_controller.dart';
+import 'package:class_grades_analyzer/controllers/my_global_controller.dart';
+import 'package:class_grades_analyzer/data/provider/for_pdf_declarer.dart';
 import 'package:class_grades_analyzer/modules/start/UI/end_row.dart';
 import 'package:class_grades_analyzer/modules/start/UI/ignore_sheets_setter.dart';
 import 'package:class_grades_analyzer/modules/start/UI/student_id_setter.dart';
@@ -45,6 +46,8 @@ class TheTitle extends StatelessWidget {
                 onPressed: () async {
                   c.write2GetStorage();
                   // await IOShowCases.saveToStorageAsync();
+                  final gc = Get.find<MyGlobalController>();
+                  await ForPDFDeclarer.write(gc.allMainPdfDeclares);
                 },
                 icon: Icon(Icons.archive)))
       ],

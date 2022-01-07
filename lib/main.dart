@@ -1,8 +1,7 @@
 import 'package:class_grades_analyzer/controllers/exams_controller.dart';
-import 'package:class_grades_analyzer/controllers/global_var/io_show_cases.dart';
 import 'package:class_grades_analyzer/controllers/id_and_course_keys_controller.dart';
 import 'package:class_grades_analyzer/controllers/my_global_controller.dart';
-import 'package:class_grades_analyzer/data/provider/for_show_cases.dart';
+import 'package:class_grades_analyzer/data/provider/for_pdf_declarer.dart';
 import 'package:class_grades_analyzer/data/provider/id_and_course_keys.dart';
 import 'package:class_grades_analyzer/modules/dims/dims_controller.dart';
 import 'package:class_grades_analyzer/modules/home/mytab_controller.dart';
@@ -29,6 +28,7 @@ void main() async {
     cIdAndCourseKeys.updateFromGetStorage();
     // await ForShowCasesApi.initAsync();
     // IOShowCases.loadFromStorage2MyGV();
+    await ForPDFDeclarer.initAsync();
 
     runApp(GetMaterialApp(
       title: "導師成績分析工具", // I18N

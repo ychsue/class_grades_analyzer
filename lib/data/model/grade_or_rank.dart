@@ -3,6 +3,15 @@ enum GradeOrRankEnum {
   rank,
 }
 
+extension GradeOrRankEnumExtension on GradeOrRankEnum {
+  static GradeOrRankEnum fromString(String input) {
+    return GradeOrRankEnum.values.firstWhere(
+      (element) => element.toString().contains(input),
+      orElse: () => GradeOrRankEnum.grade,
+    );
+  }
+}
+
 class GradeOrRankModel {
   String gradeName = 'grade';
   String rankName = 'rank';

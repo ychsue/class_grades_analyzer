@@ -21,21 +21,25 @@ class MainPdfDeclarerModel {
   }
 
   MainPdfDeclarerModel.fromJson(Map<String, dynamic> json) {
-    this.main = json['main'];
+    this.main = TabNames.tab(json['main']);
+    this.indType = IndDeclarerEnumExtension.fromString(json['indType']);
+    this.stSelN = json['n'];
+    this.nPerPage = json['nPerPage'];
+    final cBuf = json['children'].map((e) => OnePdfDeclarerModel.fromJson(e));
+    this.children = List<OnePdfDeclarerModel>.from(cBuf);
+
     this.headerScript = json["headerScript"];
     this.bottomScript = json["bottomScript"];
-
-    this.indType = json['indType'];
-    this.stSelN = json['n'];
-    this.children = json['children'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['main'] = this.main;
-    data['indType'] = this.indType;
+    data['main'] = TabNames.name(this.main);
+    data['indType'] = this.indType.toString();
     data['n'] = this.stSelN;
-    data['children'] = this.children;
+    data['nPerPage'] = this.nPerPage;
+    data['children'] =
+        this.children.map<Map<String, dynamic>>((e) => e.toJson()).toList();
     data['headerScript'] = this.headerScript;
     data['bottomScript'] = this.bottomScript;
 

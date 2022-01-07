@@ -33,23 +33,23 @@ class OnePdfDeclarerModel {
 
   OnePdfDeclarerModel.fromJson(Map<String, dynamic> json) {
     this.exchangeXY = json['exchangeXY'];
-    this.xType = json['xType'];
-    this.nx = json['nx'];
-    this.yType = json['yType'];
-    this.ny = json['ny'];
-    this.type = json['type'];
-    this.gType = json['gType'];
+    this.xType = IndDeclarerEnumExtension.fromString(json['xType']);
+    this.stSelX = json['stSelX'];
+    this.yType = IndDeclarerEnumExtension.fromString(json['yType']);
+    this.stSelY = json['stSelY'];
+    this.type = PdfItemTypeEnumExtension.fromString(json['type']);
+    this.gType = GradeOrRankEnumExtension.fromString(json['gType']);
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['exchangeXY'] = this.exchangeXY;
-    data['xType'] = this.xType;
-    data['nx'] = this.nx;
-    data['yType'] = this.yType;
-    data['ny'] = this.ny;
-    data['type'] = this.type;
-    data['gType'] = this.gType;
+    data['xType'] = this.xType.toString();
+    data['stSelX'] = this.stSelX;
+    data['yType'] = this.yType.toString();
+    data['stSelY'] = this.stSelY;
+    data['type'] = this.type.toString();
+    data['gType'] = this.gType.toString();
     return data;
   }
 }
