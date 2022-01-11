@@ -8,10 +8,21 @@ import 'show_declarer_dialog.dart';
 /// More detail, please read [README.md].
 ///
 class PdfItemDeclarerCard extends StatelessWidget {
-  const PdfItemDeclarerCard({Key? key, required this.itemData})
+  const PdfItemDeclarerCard(
+      {Key? key,
+      required this.itemData,
+      required this.iconX,
+      required this.iconY,
+      required this.showX,
+      required this.showY})
       : super(key: key);
 
   final PIDData itemData;
+  final Widget iconX;
+  final Widget iconY;
+  final void Function(BuildContext ctx) showX;
+  final void Function(BuildContext ctx) showY;
+
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +45,14 @@ class PdfItemDeclarerCard extends StatelessWidget {
           ),
           ElevatedButton(
             onPressed: () {
-              showDeclarerDialog(context, itemData);
+              showDeclarerDialog(
+                context,
+                itemData,
+                iconX: iconX,
+                iconY: iconY,
+                showX: showX,
+                showY: showY,
+              );
             },
             child: Text("編輯"), //I18N
           ),

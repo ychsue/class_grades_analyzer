@@ -11,9 +11,13 @@ import 'pid_controller.dart';
 /// The modified data will be sent back through [itemData.callback]
 /// More detail, please read [README.md].
 ///
-showDeclarerDialog(BuildContext ctx, PIDData itemData) {
+showDeclarerDialog(BuildContext ctx, PIDData itemData, {required Widget iconX,
+    required Widget iconY,
+    required void Function(BuildContext ctx) showX,
+    required void Function(BuildContext ctx) showY}) {
   final ctrler = Get.put(PIDController());
   ctrler.iniParas(data: itemData);
+
 
   showDialog(
     context: ctx,
@@ -35,8 +39,8 @@ showDeclarerDialog(BuildContext ctx, PIDData itemData) {
                       SwitchExchangeXY(cExchangeXY: ctrler.exchangeXY),
                       PDFItemTypeSelector(cType: ctrler.type),
                       GradeTypeSelector(cType: ctrler.gType),
-                      SelectXorYItems(ctrler, isXorY: SelXorY.x),
-                      SelectXorYItems(ctrler, isXorY: SelXorY.y),
+                      SelectXorYItems(ctrler, isXorY: SelXorY.x, icon: iconX, onShow: ()=>showX(sctx)),
+                      SelectXorYItems(ctrler, isXorY: SelXorY.y, icon: iconY, onShow: ()=>showY(sctx)),
                     ],
                   ),
                 ),

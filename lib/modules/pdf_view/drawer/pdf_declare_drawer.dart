@@ -1,6 +1,7 @@
 import 'package:class_grades_analyzer/controllers/my_global_controller.dart';
 import 'package:class_grades_analyzer/data/model/dimensions/tab_names.dart';
 import 'package:class_grades_analyzer/data/model/pdf/one_pdf_declarer.dart';
+import 'package:class_grades_analyzer/modules/pdf_view/drawer/dialog_list_of_an_axis.dart';
 import 'package:class_grades_analyzer/modules/pdf_view/pdf_view_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -20,6 +21,24 @@ class PdfDeclareDrawer extends StatelessWidget {
     final nPerPage = 0.obs;
     nPerPage.value =
         c.currentDeclare.value.nPerPage; // Just used for asking for rerendering
+
+    // #region For showing list of each axis
+    final tabMain = MyGlobalController.Tabs[TabNames.name(axes.value.main)] ??
+        Placeholder();
+    final tabX = MyGlobalController.Tabs[TabNames.name(axes.value.x)] ??
+        Placeholder();
+    final tabY = MyGlobalController.Tabs[TabNames.name(axes.value.y)] ??
+        Placeholder();
+    late void Function(BuildContext ctx) showMain = (BuildContext ctx) => showListOfAnAxisDialog(ctx: ctx, icon: tabMain, data: gC.allAxes.getDimByEnum(axes.value.main));
+    late void Function(BuildContext ctx) showX = (BuildContext ctx) => showListOfAnAxisDialog(
+        ctx: ctx,
+        icon: tabX,
+        data: gC.allAxes.getDimByEnum(axes.value.x));
+    late void Function(BuildContext ctx) showY = (BuildContext ctx) => showListOfAnAxisDialog(
+        ctx: ctx,
+        icon: tabY,
+        data: gC.allAxes.getDimByEnum(axes.value.y));
+    // #endregion  For showing list of each axis
     return Drawer(
       child: Column(
         mainAxisSize: MainAxisSize.min,
@@ -33,7 +52,8 @@ class PdfDeclareDrawer extends StatelessWidget {
           Divider(),
           // #region 告知目前座標
           Center(
-            child: Obx(() => Row(
+            child: //Obx(() => 
+            Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Row(
@@ -41,9 +61,7 @@ class PdfDeclareDrawer extends StatelessWidget {
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         Text("主要："), //I18N
-                        MyGlobalController
-                                .Tabs[TabNames.name(axes.value.main)] ??
-                            Placeholder(),
+                        tabMain,
                       ],
                     ),
                     Row(
@@ -51,8 +69,7 @@ class PdfDeclareDrawer extends StatelessWidget {
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         Text("X軸："), //I18N
-                        MyGlobalController.Tabs[TabNames.name(axes.value.x)] ??
-                            Placeholder(),
+                        tabX,
                       ],
                     ),
                     Row(
@@ -60,12 +77,12 @@ class PdfDeclareDrawer extends StatelessWidget {
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         Text("Y軸："), //I18N
-                        MyGlobalController.Tabs[TabNames.name(axes.value.y)] ??
-                            Placeholder(),
+                        tabY,
                       ],
                     ),
                   ],
-                )),
+                ),
+                //),
           ),
           Divider(),
           // #endregion 告知目前座標
@@ -77,14 +94,15 @@ class PdfDeclareDrawer extends StatelessWidget {
                   updateMainDeclarer(
                     context,
                     c.currentDeclare,
+                    icon: tabMain,
+                    onShow: ()=>showMain(context)
                   );
                 },
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text("設定 "), //I18N
-                    MyGlobalController.Tabs[TabNames.name(axes.value.main)] ??
-                        Placeholder(),
+                    tabMain,
                     Text(" 裏要顯示者"), //I18N
                   ],
                 )),
@@ -135,6 +153,10 @@ class PdfDeclareDrawer extends StatelessWidget {
           Expanded(
             child: ShowItemsForManipulate(
               declarer: c.currentDeclare,
+              iconX: tabX,
+              iconY: tabY,
+              showX: showX,
+              showY: showY,
               onUpdated: (v) {
                 modifieditems.clear();
                 modifieditems.addAll(v);

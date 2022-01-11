@@ -7,10 +7,21 @@ import 'package:get/get.dart';
 
 class ShowItemsForManipulate extends StatelessWidget {
   const ShowItemsForManipulate(
-      {Key? key, required this.declarer, required this.onUpdated})
+      {Key? key,
+      required this.declarer,
+      required this.onUpdated,
+      required this.iconX,
+      required this.iconY,
+      required this.showX,
+      required this.showY})
       : super(key: key);
   final Rx<MainPdfDeclarerModel> declarer;
   final void Function(List<OnePdfDeclarerModel> listChildren) onUpdated;
+
+  final Widget iconX;
+  final Widget iconY;
+  final void Function(BuildContext ctx) showX;
+  final void Function(BuildContext ctx) showY;
 
   @override
   Widget build(BuildContext context) {
@@ -48,6 +59,10 @@ class ShowItemsForManipulate extends StatelessWidget {
                           Container(
                             padding: EdgeInsets.only(right: 5),
                             child: PdfItemDeclarerCard(
+                              iconX: iconX,
+                              iconY: iconY,
+                              showX: showX,
+                              showY: showY,
                               itemData: c.pkgChildren[i],
                             ),
                           ),

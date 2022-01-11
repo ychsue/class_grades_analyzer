@@ -9,7 +9,8 @@ export 'funs/sel_n_2_list.dart';
 
 /// Check [README.md] to see how to use this package.
 ///
-UMDController pkgUpdateMainDeclarer(BuildContext context) {
+UMDController pkgUpdateMainDeclarer(BuildContext context,
+    {required Widget icon, required void Function() onShow}) {
   final c = Get.put(UMDController());
 
   // BuildContext? dialogCtx;
@@ -24,6 +25,12 @@ UMDController pkgUpdateMainDeclarer(BuildContext context) {
                 children: [
                   ...headNTail(c),
                   Divider(),
+                  Center(
+                    child: ElevatedButton(
+                      child: icon,
+                      onPressed: onShow,
+                    ),
+                  ),
                   ...indSelType(c),
                   Divider(),
                   ...indParas(c),

@@ -5,9 +5,10 @@ import 'package:get/get.dart';
 import 'pkg_update_main_declarer/pkg_update_main_declarer.dart' as pkg;
 
 void updateMainDeclarer(
-    BuildContext context, Rx<MainPdfDeclarerModel> currentDeclare) {
+    BuildContext context, Rx<MainPdfDeclarerModel> currentDeclare,
+    {required Widget icon, required void Function() onShow}) {
   // 1. show the dialog
-  final c = pkg.pkgUpdateMainDeclarer(context);
+  final c = pkg.pkgUpdateMainDeclarer(context, icon: icon, onShow: onShow);
   // 2. initialize this dialog
   String headerScript = currentDeclare.value.headerScript;
   String bottomScript = currentDeclare.value.bottomScript;

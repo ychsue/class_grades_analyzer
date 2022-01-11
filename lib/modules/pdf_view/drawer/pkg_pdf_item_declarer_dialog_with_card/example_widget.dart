@@ -29,9 +29,17 @@ class ExampleWidget extends StatelessWidget {
         children: [
           PdfItemDeclarerCard(
             itemData: datas[0],
+            iconX: Icon(Icons.text_snippet),
+            iconY: Icon(Icons.text_snippet),
+            showX: (c) => null,
+            showY: (c) => null,
           ),
           PdfItemDeclarerCard(
             itemData: datas[1],
+            iconX: Icon(Icons.text_snippet),
+            iconY: Icon(Icons.text_snippet),
+            showX: (c) => null,
+            showY: (c) => null,
           ),
         ],
       ),

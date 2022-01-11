@@ -5,10 +5,17 @@ import '../pid_controller.dart';
 import 'package:get/get.dart';
 
 class SelectXorYItems extends StatelessWidget {
-  const SelectXorYItems(this.ctrler, {Key? key, required this.isXorY})
+  const SelectXorYItems(this.ctrler,
+      {Key? key,
+      required this.isXorY,
+      required this.icon,
+      required this.onShow})
       : super(key: key);
   final PIDController ctrler;
   final SelXorY isXorY;
+
+  final Widget icon;
+  final void Function() onShow;
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +42,16 @@ class SelectXorYItems extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             Center(
-              child: Text(stHeader),
+              child: ElevatedButton(
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(stHeader),
+                    icon,
+                  ],
+                ),
+                onPressed: onShow,
+              ),
             ),
             Divider(),
             ...indSelType(cType),
