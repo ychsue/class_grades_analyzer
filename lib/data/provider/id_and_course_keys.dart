@@ -15,6 +15,23 @@ class IdAndCourseKeysApi {
   static List<String>? _ignoredNames;
   static String? _endRow;
 
+  static String? _avgName;
+  static String? _sumName;
+
+  static readAvgName() {
+    final avgName = box.read('avgName');
+    if (avgName != null) _avgName = avgName;
+
+    return _avgName;
+  }
+
+  static readSumName() {
+    final sumName = box.read('sumName');
+    if (sumName != null) _sumName = sumName;
+
+    return _sumName;
+  }
+
   static readEndRow() {
     final endRow = box.read('endRow');
     if (endRow != null) _endRow = endRow;
@@ -43,6 +60,16 @@ class IdAndCourseKeysApi {
     if (ig != null) _ignoredNames = List<String>.from(ig);
 
     return _ignoredNames;
+  }
+
+  static writeAvgName(String avgName) {
+    box.write('avgName', avgName);
+    _avgName = avgName;
+  }
+
+  static writeSumName(String sumName) {
+    box.write('sumName', sumName);
+    _sumName = sumName;
   }
 
   static writeEndRow(String endRow) {

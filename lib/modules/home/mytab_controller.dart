@@ -60,7 +60,10 @@ class MyTabController extends GetxController with SingleGetTickerProviderMixin {
       () async {
         await Future.delayed(const Duration(microseconds: 0));
         tNc.value.controller?.index =
-            1; //it should be done after myTabs is updated.
+            MyGlobalController.Tabs.keys
+            .toList()
+            .indexOf(
+                TabNames.student); //it should be done after myTabs is updated.
       }();
     }
   }

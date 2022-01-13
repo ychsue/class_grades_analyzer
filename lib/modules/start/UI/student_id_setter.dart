@@ -25,20 +25,24 @@ class _StudentIDSetterState extends State<StudentIDSetter> {
   Widget build(BuildContext context) {
     return Obx(
       () => Container(
-        margin: EdgeInsets.all(8),
+        margin: EdgeInsets.fromLTRB(8, 1, 8, 1),
         padding: EdgeInsets.all(8),
         decoration: BoxDecoration(
           color: Colors.cyan[100],
           border: Border.all(),
           borderRadius: BorderRadius.all(Radius.circular(10)),
         ),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
+        child: ExpansionTile(
+          title: theTitle(),
           children: [
-            theTitle(),
-            Divider(),
-            listOfIds(),
-            inputIds(),
+            Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Divider(),
+                listOfIds(),
+                inputIds(),
+              ],
+            ),
           ],
         ),
       ),
