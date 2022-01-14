@@ -5,6 +5,7 @@ export 'fun_for_one_pdf_declarer.dart';
 
 class OnePdfDeclarerModel {
   bool exchangeXY = false;
+  bool showHLA = false;
   IndDeclarerEnum xType = IndDeclarerEnum.asTableView;
   String stSelX = "1";
   List<int> nx = [1];
@@ -21,6 +22,7 @@ class OnePdfDeclarerModel {
   OnePdfDeclarerModel of(OnePdfDeclarerModel input) {
     return OnePdfDeclarerModel()
       ..exchangeXY = this.exchangeXY
+      ..showHLA = this.showHLA
       ..xType = this.xType
       ..stSelX = this.stSelX
       ..nx = this.nx
@@ -33,6 +35,7 @@ class OnePdfDeclarerModel {
 
   OnePdfDeclarerModel.fromJson(Map<String, dynamic> json) {
     this.exchangeXY = json['exchangeXY'];
+    this.showHLA = json['showHLA'];
     this.xType = IndDeclarerEnumExtension.fromString(json['xType']);
     this.stSelX = json['stSelX'];
     this.yType = IndDeclarerEnumExtension.fromString(json['yType']);
@@ -44,6 +47,7 @@ class OnePdfDeclarerModel {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['exchangeXY'] = this.exchangeXY;
+    data['showHLA'] = this.showHLA;
     data['xType'] = this.xType.toString();
     data['stSelX'] = this.stSelX;
     data['yType'] = this.yType.toString();

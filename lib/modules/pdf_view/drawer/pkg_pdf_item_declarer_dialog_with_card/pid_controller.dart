@@ -4,6 +4,8 @@ export 'funs/sel_n_2_list.dart';
 
 class PIDController extends GetxController {
   final exchangeXY = false.obs;
+  final showHLA = false.obs;
+
   final xType = IndDeclarerEnum.asTableView.obs;
   final yType = IndDeclarerEnum.selN.obs;
   final stSelX = "1".obs;
@@ -52,6 +54,7 @@ class PIDController extends GetxController {
   ///
   void iniParas({required PIDData data}) {
     this.exchangeXY.value = data.exchangeXY;
+    this.showHLA.value = data.showHLA;
     this.xType.value = data.xType;
     this.yType.value = data.yType;
     this.stSelX.value = data.stSelX;
@@ -67,6 +70,7 @@ class PIDController extends GetxController {
   void callback2Env() {
     final data = PIDData()
       ..exchangeXY = this.exchangeXY.value
+      ..showHLA = this.showHLA.value
       ..xType = this.xType.value
       ..yType = this.yType.value
       ..stSelX = this.stSelX.value
@@ -104,6 +108,7 @@ enum GradeOrRankEnum {
 
 class PIDData {
   bool exchangeXY = false;
+  bool showHLA = false; //show highest, lowest and average
   var xType = IndDeclarerEnum.asTableView;
   var yType = IndDeclarerEnum.selN;
   var stSelX = "1";
@@ -118,6 +123,7 @@ class PIDData {
   PIDData of(PIDData ini) {
     return PIDData()
       ..exchangeXY = this.exchangeXY
+      ..showHLA = this.showHLA
       ..xType = this.xType
       ..yType = this.yType
       ..stSelX = this.stSelX

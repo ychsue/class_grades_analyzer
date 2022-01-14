@@ -31,6 +31,7 @@ void main() {
       print(output);
       final parsedOutput = jsonDecode(output);
       expect(parsedOutput['exchangeXY'], data.exchangeXY);
+      expect(parsedOutput['showHLA'], data.showHLA);
       expect(parsedOutput['xType'], data.xType.toString());
       expect(parsedOutput['stSelX'], data.stSelX);
       expect(parsedOutput['yType'], data.yType.toString());
@@ -49,6 +50,7 @@ void main() {
       final parsedOutput = jsonDecode(output);
       final result = OnePdfDeclarerModel.fromJson(parsedOutput);
       expect(result.exchangeXY, data.exchangeXY);
+      expect(result.showHLA, data.showHLA);
       expect(result.xType, data.xType);
       expect(result.stSelX, data.stSelX);
       expect(result.yType, data.yType);

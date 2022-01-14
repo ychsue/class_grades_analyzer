@@ -76,20 +76,21 @@ pw.Widget genOnePdfItem(PdfPageFormat format, PdfViewController ctrler,
 
   // TODO For showing the highest, lowest and average for each student
   if (mainFor == TabsEnum.student) {
-    if (yInds.length == 1) {
+    if (itemDeclarer.showHLA && axes.y == TabsEnum.exam) {
+      final exam_01_ind = yInds[0];
       final highestRow = <num?>[];
       final lowestRow = <num?>[];
       final averageRow = <num?>[];
       for (var xInd in tableXinds) {
         feedIndices(xFor, xInd);
         final highest = exams
-            ?.getExam(examInd)
+            ?.getExam(exam_01_ind)
             .getStudent({VStudentKeys.highest: null}).getCourse(courseInd);
         final lowest = exams
-            ?.getExam(examInd)
+            ?.getExam(exam_01_ind)
             .getStudent({VStudentKeys.lowest: null}).getCourse(courseInd);
         final average = exams
-            ?.getExam(examInd)
+            ?.getExam(exam_01_ind)
             .getStudent({VStudentKeys.average: null}).getCourse(courseInd);
         highestRow.add(highest?.numb);
         lowestRow.add(lowest?.numb);

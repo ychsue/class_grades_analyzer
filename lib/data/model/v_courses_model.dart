@@ -20,7 +20,10 @@ class VCoursesModel {
     return _average;
   }
 
-  VCoursesModel({this.parent});
+  VCoursesModel({this.parent}) {
+    sum;
+    average;
+  }
 
   VCoursesModel.fromJson(Map<String, dynamic> json) {
     this._sum = json['sum'];

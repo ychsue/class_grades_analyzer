@@ -54,6 +54,7 @@ class SIFMController extends GetxController {
       item.ny = pkg.selN2List(item.stSelY);
       result.add(pkg.PIDData()
         ..exchangeXY = item.exchangeXY
+        ..showHLA = item.showHLA
         ..xType = c2pXYType(item.xType)
         ..yType = c2pXYType(item.yType)
         ..stSelX = item.stSelX
@@ -182,6 +183,7 @@ class SIFMController extends GetxController {
   OnePdfDeclarerModel OnePdf2PIDData(pkg.PIDData of) {
     return OnePdfDeclarerModel()
       ..exchangeXY = of.exchangeXY
+      ..showHLA = of.showHLA
       ..xType = p2cXYType(of.xType)
       ..stSelX = of.stSelX
       ..nx = of.nx ?? []

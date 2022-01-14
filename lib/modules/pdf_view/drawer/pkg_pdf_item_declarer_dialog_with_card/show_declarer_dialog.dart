@@ -1,3 +1,4 @@
+import 'package:class_grades_analyzer/modules/pdf_view/drawer/pkg_pdf_item_declarer_dialog_with_card/UI/switch_show_h_l_avg.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'UI/grade_type_selector.dart';
@@ -37,6 +38,7 @@ showDeclarerDialog(BuildContext ctx, PIDData itemData, {required Widget iconX,
                     shrinkWrap: true,
                     children: [
                       SwitchExchangeXY(cExchangeXY: ctrler.exchangeXY),
+                      SwitchShowHLA(cShowHLA: ctrler.showHLA),
                       PDFItemTypeSelector(cType: ctrler.type),
                       GradeTypeSelector(cType: ctrler.gType),
                       SelectXorYItems(ctrler, isXorY: SelXorY.x, icon: iconX, onShow: ()=>showX(sctx)),
