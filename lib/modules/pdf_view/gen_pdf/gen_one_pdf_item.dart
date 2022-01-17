@@ -1,9 +1,11 @@
+import 'package:class_grades_analyzer/controllers/id_and_course_keys_controller.dart';
 import 'package:class_grades_analyzer/data/model/dimensions/tab_names.dart';
 import 'package:class_grades_analyzer/data/model/grade_or_rank.dart';
 import 'package:class_grades_analyzer/data/model/one_exam_model.dart';
 import 'package:class_grades_analyzer/data/model/pdf/one_pdf_declarer.dart';
 import 'package:class_grades_analyzer/data/model/pdf/pdf_item_type.dart';
 import 'package:class_grades_analyzer/modules/pdf_view/gen_pdf/functions/get_inds.dart';
+import 'package:get/get.dart';
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
 
@@ -97,11 +99,12 @@ pw.Widget genOnePdfItem(PdfPageFormat format, PdfViewController ctrler,
         averageRow.add(average?.numb);
       }
       data.add(highestRow);
-      yInds.add(VStudentKeys.highest);
+      final cNames = Get.find<IdAndCourseKeysController>();
+      yInds.add(cNames.highestName.value); // VStudentKeys.highest);
       data.add(lowestRow);
-      yInds.add(VStudentKeys.lowest);
+      yInds.add(cNames.lowestName.value); //VStudentKeys.lowest);
       data.add(averageRow);
-      yInds.add(VStudentKeys.average);
+      yInds.add(cNames.avgAllName.value); //VStudentKeys.average);
     }
   }
 

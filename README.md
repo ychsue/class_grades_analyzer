@@ -16,10 +16,13 @@
 3. [ ] 可能還得考慮 **名次或成績進步速度** 與 **名次或成績進步加速度** 等，也就是關乎每個學生在意的特徵。
 4. 此外，可以由三個方向投影，投影的法線我稱之為 virtual
    1. [x] 目前已經投影 **course** 為sum & average
-   2. [ ] 若投影 **student** 則可以為 average 與 SD (Standard Deviation)標準差
+   2. [X] 若投影 **student** 則可以為 average 與 highest 和 lowest
+   3. [ ] **student** 也可以設定 SD (Standard Deviation)標準差
 5. [x] 使用 **TabBar** 來顯示這三種類型，由 **Drawer** 來操控個別類型
 
 # 進度
+## [2022-01-17] 已經讓使用者可以設定最高、最低與平均的名稱，並且也可以存起來下次使用。
+
 ## [2022-01-14] 讓最高、最低與平均可以選擇是否要列印出來。利用`showHLA` 來達成。
 ## [2022-01-13] 能夠更新 `VCourseNames` 與相應的 平均與總分 的名稱了。
 

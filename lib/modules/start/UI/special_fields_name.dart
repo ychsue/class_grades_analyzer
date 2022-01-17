@@ -52,6 +52,52 @@ class SpecialFieldsName extends GetView<IdAndCourseKeysController> {
               ),
             ],
           ),
+          Row(
+            children: [
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: TextFormField(
+                    initialValue: controller.avgAllName.value,
+                    onChanged: (v) {
+                      controller.avgAllName.value = v;
+                    },
+                    decoration: InputDecoration(
+                        hintText: controller.avgAllName.value,
+                        labelText: "總平均"), // I18N
+                  ),
+                ),
+              ),
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: TextFormField(
+                    initialValue: controller.highestName.value,
+                    onChanged: (v) {
+                      controller.highestName.value = v;
+                    },
+                    decoration: InputDecoration(
+                        hintText: controller.highestName.value,
+                        labelText: "最高分"), // I18N
+                  ),
+                ),
+              ),
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: TextFormField(
+                    initialValue: controller.lowestName.value,
+                    onChanged: (v) {
+                      controller.lowestName.value = v;
+                    },
+                    decoration: InputDecoration(
+                        hintText: controller.lowestName.value,
+                        labelText: "最低分"), // I18N
+                  ),
+                ),
+              ),
+            ],
+          ),
         ],
       ),
       // ),

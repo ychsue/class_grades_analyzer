@@ -17,8 +17,12 @@ class IdAndCourseKeysController extends GetxController {
     "temp_in",
   ].obs;
 
-  final avgName = "平均".obs;
+  final avgName = "各科平均".obs;
   final sumName = "總分".obs;
+
+  final avgAllName = "平均".obs;
+  final highestName = "最高分".obs;
+  final lowestName = "最低分".obs;
 
   updateFromGetStorage() {
     final idsBuf = IdAndCourseKeysApi.readIds();
@@ -30,6 +34,15 @@ class IdAndCourseKeysController extends GetxController {
     final sumNameBuf = IdAndCourseKeysApi.readSumName();
     if (avgNameBuf != null) avgName.value = avgNameBuf;
     if (sumNameBuf != null) sumName.value = sumNameBuf;
+
+    // #region highest, lowest, and average
+    final avgAllNameBuf = IdAndCourseKeysApi.readAvgAllName();
+    final highestNameBuf = IdAndCourseKeysApi.readHighestName();
+    final lowestNameBuf = IdAndCourseKeysApi.readLowestName();
+    if (avgAllNameBuf != null) avgAllName.value = avgAllNameBuf;
+    if (highestNameBuf != null) highestName.value = highestNameBuf;
+    if (lowestNameBuf != null) lowestName.value = lowestNameBuf;
+    // #endregion highest, lowest, and average
 
     if (idsBuf != null) ids.value = idsBuf;
     if (courseKeysBuf != null) courseKeys.value = courseKeysBuf;
@@ -45,5 +58,8 @@ class IdAndCourseKeysController extends GetxController {
     IdAndCourseKeysApi.writeEndRow(endRow.value);
     IdAndCourseKeysApi.writeAvgName(avgName.value);
     IdAndCourseKeysApi.writeSumName(sumName.value);
+    IdAndCourseKeysApi.writeAvgAllName(avgAllName.value);
+    IdAndCourseKeysApi.writeHighestName(highestName.value);
+    IdAndCourseKeysApi.writeLowestName(lowestName.value);
   }
 }

@@ -18,6 +18,45 @@ class IdAndCourseKeysApi {
   static String? _avgName;
   static String? _sumName;
 
+// #region highest, lowest and average
+  static String? _avgAllName;
+  static String? _highestName;
+  static String? _lowestName;
+
+  static String? readAvgAllName() {
+    final avgAllName = box.read('avgAllName');
+    if (avgAllName != null) _avgAllName = avgAllName;
+    return _avgAllName;
+  }
+
+  static String? readHighestName() {
+    final highestName = box.read('highestName');
+    if (highestName != null) _highestName = highestName;
+    return _highestName;
+  }
+
+  static String? readLowestName() {
+    final lowestName = box.read('lowestName');
+    if (lowestName != null) _lowestName = lowestName;
+    return _lowestName;
+  }
+
+  static writeAvgAllName(String avgAllName) {
+    box.write('avgAllName', avgAllName);
+    _avgAllName = avgAllName;
+  }
+
+  static writeHighestName(String highestName) {
+    box.write('highestName', highestName);
+    _highestName = highestName;
+  }
+
+  static writeLowestName(String lowestName) {
+    box.write('lowestName', lowestName);
+    _lowestName = lowestName;
+  }
+// #endregion highest, lowest and average
+
   static readAvgName() {
     final avgName = box.read('avgName');
     if (avgName != null) _avgName = avgName;

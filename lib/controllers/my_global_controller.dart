@@ -57,9 +57,16 @@ class MyGlobalController extends GetxController {
             ..headerScript = "座號：\$1，姓名：\$2"
             ..children = [
               OnePdfDeclarerModel()
-                ..type = PdfItemTypeEnum.tbl_chart
+                ..type = PdfItemTypeEnum.table
+                ..showHLA = true
                 ..stSelY = "1~2"
-                ..ny = [1, 2]
+                ..ny = [1, 2],
+              OnePdfDeclarerModel()
+                ..type = PdfItemTypeEnum.lineChart
+                ..exchangeXY = true
+                ..xType = IndDeclarerEnum.selN
+                ..stSelX = "7"
+                ..yType = IndDeclarerEnum.all
             ]
             ..indType = IndDeclarerEnum.all)
           .obs,
