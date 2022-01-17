@@ -10,6 +10,13 @@
    3. [x] 以學生為主
    4. [x] 以課目為主
 
+# 放到 GitHub 上
+1. [此篇](https://zonble.medium.com/use-github-pages-to-host-your-flutter-web-app-as-an-example-of-your-flutter-package-cb7b5b726eb1) 講到如何利用 `workflow.yml` 檔案來自動布置所要的 `GitHub Pages`
+2. [此篇](https://github.com/francescopasin/flutter_workflow) 則講到較詳細的原理
+3. [此為GitHub Flutter action的網頁](https://github.com/marketplace/actions/flutter-action)
+4. [Medium文章](https://wiefel.medium.com/automatically-deploy-flutter-web-project-to-github-pages-using-github-actions-2ec743e830fa)
+5. [Flutter 官網](https://docs.flutter.dev/deployment/cd)
+6. [放到github上的教學](https://powerupwebdev.medium.com/deploy-your-projects-on-github-using-visual-studio-code-and-git-5f7221b272ca)
 # 思考
 1. [x] 原則上，這是一個3D問題。有 **exam**, **student** 與 **course** 三個維度。
 2. [x] 而它的值可以是文字，如 **A++**，可以是 **數字** ，也可以是 **rank**
