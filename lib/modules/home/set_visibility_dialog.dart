@@ -66,7 +66,7 @@ class SetVisibilityDialog extends StatelessWidget {
                             tristate: true,
                             value: c.value,
                             onChanged: (v) {
-                              debugPrint("Axis: $v");
+                              // debugPrint("Axis: $v");
                               c.value = v ?? false;
                               axes.value.toSelAll(
                                   axisEnum: whichAxis, isAll: c.value ?? false);
@@ -106,7 +106,7 @@ class SetVisibilityDialog extends StatelessWidget {
                                       c.value =
                                           chk4AllShouldbe();
                                       axes.refresh();
-                                      debugPrint("${jsonEncode(e)}");
+                                      // debugPrint("${jsonEncode(e)}");
                                     },
                                     value: e.t2,
                                   ),

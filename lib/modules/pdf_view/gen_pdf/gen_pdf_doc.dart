@@ -19,7 +19,7 @@ Future<Uint8List> genPdfDoc(PdfPageFormat format, PdfViewController ctrler,
     }
     ttf = ctrler.gC.ttf!;
   } catch (e) {
-    debugPrint(e.toString());
+    debugPrint("genPdfDoc exception:" + e.toString());
   }
 
   final theme = pw.ThemeData.withFont(base: ttf);

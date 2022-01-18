@@ -16,9 +16,9 @@ OneExamRowModel? getOneStudent(ICKeys icKeys, List<dynamic> row) {
   // if [id]'s elements are all null, skip this one
   if (!isValid) return null;
 
-  if (id['座號'] == 30) {
-    debugPrint("$id");
-  }
+  // if (id['座號'] == 30) {
+  //   debugPrint("$id");
+  // }
 
   Map<String, OneRecordModel> courses = {};
   var hasFormula = false;

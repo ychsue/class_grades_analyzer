@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:flutter/material.dart';
+
 import 'one_pdf_declarer.dart';
 
 extension FunForOnePdfDeclarer on OnePdfDeclarerModel {
@@ -10,6 +12,9 @@ extension FunForOnePdfDeclarer on OnePdfDeclarerModel {
 
     List<String> inList = [];
     final iType = input.runtimeType.toString();
+    debugPrint("genStringFromExpression: input type: " +
+        iType +
+        "& expression = $expression");
     if (iType == "_JsonMap" || iType.contains("Map")) {
       inList.add(jsonEncode(input));
       final allEle = List<String>.from(input.values.map((e) => e.toString()));
