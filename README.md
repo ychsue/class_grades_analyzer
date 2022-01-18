@@ -17,7 +17,7 @@
 4. [Medium文章](https://wiefel.medium.com/automatically-deploy-flutter-web-project-to-github-pages-using-github-actions-2ec743e830fa)
 5. [Flutter 官網](https://docs.flutter.dev/deployment/cd)
 6. [放到github上的教學](https://powerupwebdev.medium.com/deploy-your-projects-on-github-using-visual-studio-code-and-git-5f7221b272ca)
-7. [如何修正 base href](https://github.com/flutter/flutter/issues/69760)
+7. [如何修正 base href](https://github.com/flutter/flutter/issues/69760) : 最後面記得一定要加上 "/"，`即base href="/class_grades_analyzer/"`。
 
 # 思考
 1. [x] 原則上，這是一個3D問題。有 **exam**, **student** 與 **course** 三個維度。
