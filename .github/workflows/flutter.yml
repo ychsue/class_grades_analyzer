@@ -30,6 +30,7 @@ jobs:
       - name: Deploy
         run: |
           cd ./build/web
+          sed -i 's#<base href="/">#<base href="/class_grades_analyzer">#g' index.html
           git init
           git config user.name  "CI"
           git config user.email "flutter-ci@github.com"
