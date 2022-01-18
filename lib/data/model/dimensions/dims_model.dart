@@ -34,7 +34,10 @@ class DimsModel {
   fromJson(dynamic jsonIn) {
     final iType = jsonIn.runtimeType.toString();
     late Map<String, List<dynamic>> json;
-    if (iType == "_JsonMap" || iType.contains("Map")) {
+    if (iType == "_JsonMap" ||
+        iType.contains("Map") ||
+        iType.contains("minified")) {
+      // minified:: for released one
       json = Map<String, List<dynamic>>.from(jsonIn);
     } else {
       return {};

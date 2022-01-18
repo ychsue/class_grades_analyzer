@@ -15,7 +15,10 @@ extension FunForOnePdfDeclarer on OnePdfDeclarerModel {
     debugPrint("genStringFromExpression: input type: " +
         iType +
         "& expression = $expression");
-    if (iType == "_JsonMap" || iType.contains("Map")) {
+    if (iType == "_JsonMap" ||
+        iType.contains("Map") ||
+        iType.contains("minified")) {
+      // minified:: for released one
       inList.add(jsonEncode(input));
       final allEle = List<String>.from(input.values.map((e) => e.toString()));
       inList.addAll(allEle);
