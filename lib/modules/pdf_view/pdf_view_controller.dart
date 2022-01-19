@@ -23,7 +23,7 @@ class PdfViewController extends GetxController {
         axes.value.sortIndices.course;
     y = axes.value.sortIndices.getDimByEnum(axes.value.y) ??
         axes.value.sortIndices.student;
-        
+
     currentDeclare = gC.allMainPdfDeclares
         .firstWhere((ele) => ele.value.main == gC.tab.value);
     super.onInit();

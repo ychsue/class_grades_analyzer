@@ -30,6 +30,11 @@
 5. [x] 使用 **TabBar** 來顯示這三種類型，由 **Drawer** 來操控個別類型
 
 # 進度
+## [2022-01-19] 除 /pdf_view 的錯
+由於使用者可能在看完pdf後就停留在 /pdf_view ，但一開始時並沒有傳入任何的成績，所以會導致錯誤。
+此時，就要用到 `GetMiddleWare` 的 redirect 來修正。
+傳回 null 表示不做 redirect。
+
 ## [2022-01-18] 如果用 release 版， `_JsonMap` 可能變成 `minified:cF`，導致程式錯誤。
 
 ## [2022-01-17] 沒看到它自動 deploy耶?

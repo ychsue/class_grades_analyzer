@@ -33,6 +33,7 @@ class MyGlobalController extends GetxController {
   };
 
   Rx<ExamsModel?> exams = (null as ExamsModel).obs;
+  bool get hasData => exams.value != null;
   Rx<TabsEnum> tab = (TabsEnum.home).obs;
 
   // For showing grade or rank
