@@ -8,6 +8,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      Repository: class_grades_analyzer
 
     steps:
       - uses: actions/checkout@v2
@@ -30,11 +32,14 @@ jobs:
       - name: Deploy
         run: |
           cd ./build/web
-          sed -i 's#<base href="/">#<base href="/class_grades_analyzer/">#g' index.html
+          sed -i 's#<base href="/">#<base href="/'$Repository'/">#g' index.html
+          sed -i 's#<head>#<head>\n  <link rel="canonical" href="https://ychsue.github.io/'$Repository'/" />#i' index.html
+          sed -i 's#"/"#"/'$Repository'/"#g' flutter_service_worker.js
+          sed -i 's#"start_url": ".",#"start_url": "/'$Repository'/index.html",\n    "scope": "/'$Repository'/",#g' manifest.json
           git init
           git config user.name  "CI"
           git config user.email "flutter-ci@github.com"
-          git remote add secure-origin https://${{ secrets.ACCESS_TOKEN }}@github.com/ychsue/class_grades_analyzer.git
+          git remote add secure-origin https://${{ secrets.ACCESS_TOKEN }}@github.com/ychsue/$Repository.git
           git checkout -b gh-pages
           git add .
           git commit -m "Updated docs"
