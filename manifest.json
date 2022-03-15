@@ -1,0 +1,24 @@
+{
+    "name": "class_grades_analyzer",
+    "short_name": "class_grades_analyzer",
+    "start_url": "/class_grades_analyzer/index.html",
+    "scope": "/class_grades_analyzer/",
+    "display": "standalone",
+    "background_color": "#0175C2",
+    "theme_color": "#0175C2",
+    "description": "A new Flutter project.",
+    "orientation": "portrait-primary",
+    "prefer_related_applications": false,
+    "icons": [
+        {
+            "src": "icons/Icon-192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "icons/Icon-512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
+}
